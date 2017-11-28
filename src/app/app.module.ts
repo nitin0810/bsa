@@ -5,7 +5,7 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
 
 import { MyApp } from './app.component';
-import { WelcomePage } from '../pages/welcome/welcome';
+import { WelcomePage } from '../pages/non-lazy/welcome/welcome';
 
 @NgModule({
   declarations: [
