@@ -1,0 +1,178 @@
+<ion-content class="background1">
+        <img class="center-block" src="assets/images/logo.png" width="300px">
+        <div class="slide-container">
+        <ion-slides loop autoplay pager>
+          <ion-slide>
+            <ion-card>
+              <iframe src="https://www.youtube.com/embed/V8VIw0fk4X0" frameborder="0" width="100%" autoplay controls=0></iframe>
+              <ion-card-content text-left>
+                <h2 class="textPrimary">Dental Practice</h2>
+                <p>This is an incredible resource made by a general dentist named Tuan Pham. He was able to build a high-producing general practice in a heavily-saturated market in Texas</p>
+                <ion-icon name="star" color="primary"></ion-icon>
+                <ion-icon name="star" color="primary"></ion-icon>
+                <ion-icon name="star" color="primary"></ion-icon>
+                <ion-icon name="star" color="primary"></ion-icon>
+                <ion-icon name="star-half" color="primary"></ion-icon>
+              </ion-card-content>
+            </ion-card>
+            <div class="textWhite">
+              <h2>Take Video Courses</h2>
+              <p>At any time the trainee can select the save button, which is on every page and then exit the program</p>
+            </div>
+          </ion-slide>
+      
+          <ion-slide>
+            <ion-card>
+              <h1 class="textPrimary">Instructor</h1>
+              <img class="center-block instructor" src="https://www.livelingua.com/img/profilesTeachers/103/Guillaume-Deneufbourg-Square_Profile_S.jpg">
+              <h2>Gihan Fernando</h2>
+              <p>The staff and partners at Gosberton Medical Centre have found the Blue Stream Academy eLearning modules very informative and easy to use.</p>
+              <ion-grid padding>
+                <ion-row>
+                  <ion-col>
+                    <b>83,111</b>
+                    <p>Students</p>
+                  </ion-col>
+                  <ion-col class="border_left_right">
+                    <b>17</b>
+                    <p>Courses</p>
+                  </ion-col>
+                  <ion-col>
+                    <b>4.7/5</b>
+                    <p>Rating</p>
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-card>
+            <div class="textWhite">
+              <h2>Learn from experts</h2>
+              <p>The staff and partners at Gosberton Medical Centre have found the Blue Stream Academy eLearning modules very informative and easy to use.</p>
+            </div>
+          </ion-slide>
+      
+          <ion-slide>
+            <ion-card>
+              <ion-list no-lines>
+                <ion-item>
+                  <ion-thumbnail item-start>
+                    <img no-padding src="http://www.midwaydentalclinic.com.au/wp-content/uploads/2016/02/dental-1.png">
+                  </ion-thumbnail>
+                  <h3>Dental Practice</h3>
+                  <p>
+                    <ion-icon name="star" color="primary"></ion-icon>
+                    <ion-icon name="star" color="primary"></ion-icon>
+                    <ion-icon name="star" color="primary"></ion-icon>
+                    <ion-icon name="star-half" color="primary"></ion-icon>
+                  </p>
+                  <div class="progress">
+                    <progress class="background16" value="22" max="100"></progress>
+                    <p class="text_small">22% Completed</p>
+                  </div>
+                </ion-item>
+                <ion-item>
+                  <ion-thumbnail item-start>
+                    <img no-padding src="https://s-media-cache-ak0.pinimg.com/originals/21/73/2d/21732d999f8c364e1a0df86c4ad1e17c.png">
+                  </ion-thumbnail>
+                  <h3>Nursing/Care Home</h3>
+                  <p>
+                    <ion-icon name="star" color="primary"></ion-icon>
+                    <ion-icon name="star-half" color="primary"></ion-icon>
+                  </p>
+                  <div class="progress">
+                    <progress class="background16" value="35" max="100"></progress>
+                    <p class="text_small">35% Completed</p>
+                  </div>
+                </ion-item>
+                <ion-item>
+                  <ion-thumbnail item-start>
+                    <img no-padding src="http://www.inhousephysicians.com/wp-content/uploads/2014/03/cross-red.png">
+                  </ion-thumbnail>
+                  <h3>Urgent Care</h3>
+                  <p>
+                    <ion-icon name="star" color="primary"></ion-icon>
+                    <ion-icon name="star" color="primary"></ion-icon>
+                    <ion-icon name="star-half" color="primary"></ion-icon>
+                  </p>
+                  <div class="progress">
+                    <progress class="background16" value="90" max="100"></progress>
+                    <p class="text_small">90% Completed</p>
+                  </div>
+                </ion-item>
+              </ion-list>
+            </ion-card>
+            <div class="textWhite">
+              <h2>Go at your own pace</h2>
+              <p>Lifetime access to courses. Access them anytime anywhere</p>
+            </div>
+          </ion-slide>
+      
+          <ion-slide padding>
+            <ion-list>
+              <ion-list-header>
+                <span>e-Learning Suit</span>
+              </ion-list-header>
+              <ion-row class="textWhite" text-center>
+                  <ion-col col-6>
+                      <div padding (click)="openAllCoursesPage()">
+                          <ion-icon name="beaker" class="icon"></ion-icon>
+                          <br>
+                          <b class="text_small">GP Practice</b>
+                      </div>
+                  </ion-col>
+                  <ion-col col-6>
+                      <div padding (click)="openAllCoursesPage()">
+                          <ion-icon name="md-analytics" class="icon"></ion-icon>
+                          <br>
+                          <b class="text_small">Dental Practice</b>
+                      </div>
+                  </ion-col>
+                  <ion-col col-6>
+                      <div padding (click)="openAllCoursesPage()">
+                          <ion-icon name="md-aperture" class="icon"></ion-icon>
+                          <br>
+                          <b class="text_small">Nursing/Care Home</b>
+                      </div>
+                  </ion-col>
+                  <ion-col col-6>
+                      <div padding (click)="openAllCoursesPage()">
+                          <ion-icon name="md-barcode" class="icon"></ion-icon>
+                          <br>
+                          <b class="text_small">Hospice</b>
+                      </div>
+                  </ion-col>
+                  <ion-col col-6>
+                      <div padding (click)="openAllCoursesPage()">
+                          <ion-icon name="md-beaker" class="icon"></ion-icon>
+                          <br>
+                          <b class="text_small">Urgent Care</b>
+                      </div>
+                  </ion-col>
+                  <ion-col col-6>
+                      <div padding (click)="openAllCoursesPage()">
+                          <ion-icon name="md-browsers" class="icon"></ion-icon>
+                          <br>
+                          <b class="text_small">The Care Certificate</b>
+                      </div>
+                  </ion-col>                                    
+              </ion-row>
+            </ion-list>
+          </ion-slide>
+
+
+        </ion-slides>
+      </div>
+      </ion-content>
+      <ion-footer>
+          <ion-toolbar color="dark" class="textWhite" no-padding>
+              <ion-grid no-padding>
+                  <ion-row>
+                      <ion-col ion-button full no-padding clear >
+                        <span class="textWhite text_md">Register</span>
+                      </ion-col>
+                      <ion-col ion-button full text-right no-padding clear class="border_left" >
+                        <span class="textWhite text_md">Log in</span>
+                      </ion-col>
+                  </ion-row>
+              </ion-grid>
+          </ion-toolbar>
+      </ion-footer>
