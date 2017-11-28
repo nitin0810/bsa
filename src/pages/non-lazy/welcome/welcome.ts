@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { NavController , ModalController } from 'ionic-angular';
+import { NavController, ModalController } from 'ionic-angular';
 
 
 
 @Component({
-  selector: 'welcome',
-  templateUrl: 'welcome.html',
-  styles:[`
+    selector: 'welcome',
+    templateUrl: 'welcome.html',
+    styles: [`
   ion-content{
       background-image: url('assets/images/girl_boy_study.jp');
       background-size:cover;
@@ -25,11 +25,19 @@ import { NavController , ModalController } from 'ionic-angular';
 
 export class WelcomePage {
 
-  constructor( public modalCtrl: ModalController , public navCtrl: NavController ) {}
+    constructor(public modalCtrl: ModalController, public navCtrl: NavController) { }
 
+    openRegisterPage() {
+        const modal = this.modalCtrl.create("RegisterPage");
+        modal.present();
+    }
 
+    openLoginPage() {
+        const modal = this.modalCtrl.create("LoginModule");
+        modal.present();
+    }
 
-  openAllCoursesPage(){
-      // this.navCtrl.push(AllCoursesPage);
-  }
+    openAllCoursesPage() {
+        // this.navCtrl.push(AllCoursesPage);
+    }
 }

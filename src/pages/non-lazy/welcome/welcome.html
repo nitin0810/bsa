@@ -166,10 +166,10 @@
           <ion-toolbar color="dark" class="textWhite" no-padding>
               <ion-grid no-padding>
                   <ion-row>
-                      <ion-col ion-button full no-padding clear >
+                      <ion-col ion-button full no-padding clear (tap)="openRegisterPage()">
                         <span class="textWhite text_md">Register</span>
                       </ion-col>
-                      <ion-col ion-button full text-right no-padding clear class="border_left" >
+                      <ion-col ion-button full text-right no-padding clear class="border_left" (tap)="openLoginPage()">
                         <span class="textWhite text_md">Log in</span>
                       </ion-col>
                   </ion-row>

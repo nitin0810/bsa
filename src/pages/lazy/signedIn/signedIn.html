@@ -1,0 +1,24 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-toolbar>
+            <ion-buttons start>
+                <button ion-button color="light" (click)="dismiss()">
+                    <span color="light" showWhen="ios">Cancel</span>
+                    <ion-icon color="light" showWhen="android,windows" name="md-close" ></ion-icon>
+                </button>
+            </ion-buttons>
+            <ion-title>
+                Register
+            </ion-title>
+        </ion-toolbar>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding margin-top text-center>
+    <ion-icon name="checkmark-circle" text-center color="primary" margin-top></ion-icon>
+    <ion-card text-center padding margin-top>
+        <div class="textWhite">{{myParam}}</div>
+    </ion-card>
+    <button ion-button full color="color11" (click)="continueAsStudent()">Continue</button>
+</ion-content>
