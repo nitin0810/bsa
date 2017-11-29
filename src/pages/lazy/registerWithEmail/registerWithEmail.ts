@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, NavParams, NavController } from 'ionic-angular';
-import { SignedInPage } from '../signedIn/signedin';
-import { ModalController } from 'ionic-angular/components/modal/modal-controller';
+import { IonicPage, NavParams, NavController } from 'ionic-angular';
 
 @IonicPage()
 @Component({
@@ -10,21 +8,15 @@ import { ModalController } from 'ionic-angular/components/modal/modal-controller
 })
 
 export class RegisterWithEmailPage {
-    myParam: any;
 
     constructor(
-        private viewCtrl: ViewController,
         private navParam: NavParams,
-        private modalCtrl: ModalController) {
+        private nav: NavController) {
     }
 
-    dismiss() {
-        this.viewCtrl.dismiss();
-    }
 
     signUp(registerText) {
-        const modal = this.modalCtrl.create("SignedInPage", { 'myParam': registerText });
-        modal.present();
+        this.nav.push("LoginConfirmedPage",{'myParam':registerText});
     }
 
 }

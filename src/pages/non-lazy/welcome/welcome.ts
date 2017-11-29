@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, ModalController } from 'ionic-angular';
+import { NavController} from 'ionic-angular';
+import { MyCoursesPage } from '../myCourses/myCourses';
 
 
 
@@ -25,16 +26,16 @@ import { NavController, ModalController } from 'ionic-angular';
 
 export class WelcomePage {
 
-    constructor(public modalCtrl: ModalController, public navCtrl: NavController) { }
+    constructor(
+         public navCtrl: NavController) { }
 
     openRegisterPage() {
-        const modal = this.modalCtrl.create("RegisterPage");
-        modal.present();
+        this.navCtrl.push("RegisterPage");
     }
 
     openLoginPage() {
-        const modal = this.modalCtrl.create("SignInPage");
-        modal.present();
+        this.navCtrl.push("SignInPage");
+        
     }
 
     openAllCoursesPage() {

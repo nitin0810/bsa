@@ -1,0 +1,83 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>My Courses</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="gray_backgorund">
+    <!-- Top Section -->
+    <ion-slides pager class="top-slides">
+        <ion-slide class="slide1-1" *ngFor='let add of adds' (click)="openBuyCoursePage()">
+            <img [src]='add.img' />
+            <div class="slide1-bottom">
+                {{add.name}}
+                <br>
+                <ion-icon name="star" color="primary"></ion-icon>
+                <ion-icon name="star" color="primary"></ion-icon>
+                <ion-icon name="star" color="primary"></ion-icon>
+                <ion-icon name="star" color="primary"></ion-icon>
+                <ion-icon name="star-half" color="primary"></ion-icon>
+                <span class="textGray">{{add.ratingCount}}</span>
+                <br>
+                <span class="textPrimary">{{add.price}}</span>
+            </div>
+        </ion-slide>
+    </ion-slides>
+    <!-- /top Section -->
+
+    <!-- Course Categories -->
+    <ion-list>
+        <ion-list-header>
+            Course Categories
+        </ion-list-header>
+        <div class="horizontal-scroll textWhite card2">
+            <ion-card *ngFor="let category of categories" (click)="openCoursePage(category.name)">
+                <img [src]='category.img' />
+                <div class="slide2-bottom">
+                    {{ category.name }}
+                </div>
+            </ion-card>
+        </div>
+    </ion-list>
+    <!-- Course Categories -->
+
+    <!-- Available Courses -->
+    <ion-list class="list-view">
+        <ion-list-header>
+            Subscribed Courses
+        </ion-list-header>
+        <ion-item-sliding *ngFor="let course of subscribedCourses">
+            <button ion-item (click)="openSubscribedCourse(course.name)">
+                <ion-thumbnail item-start>
+                    <img [src]='course.img'>
+                </ion-thumbnail>
+                <span class="title">{{ course.name }} </span>
+                <ion-badge text-right class="text_small float_right" [style.background]='course.color'>{{ course.status }}</ion-badge>
+                <div class="progress">
+                    <progress class="bar background16" max="100"></progress>
+                    <ion-badge class="text_small float_right">{{ course.timeLeft }} days left</ion-badge>
+                </div>
+            </button>
+            <ion-item-options side="right">
+                <button ion-button color="color2">
+                    <ion-icon name="alarm"></ion-icon>
+                    Remind me
+                </button>
+                <button ion-button color="color1">
+                    <ion-icon name="help-circle"></ion-icon>
+                    Query
+                </button>
+            </ion-item-options>
+            <ion-item-options side="left">
+                <button ion-button color="color3">
+                    <ion-icon name="refresh-circle"></ion-icon>
+                    Reset
+                </button>
+            </ion-item-options>
+        </ion-item-sliding>
+    </ion-list>
+    <!-- /available courses -->
+</ion-content>

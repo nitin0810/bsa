@@ -3,7 +3,7 @@ import { IonicPage, ViewController, ModalController, NavController, NavParams } 
 
 @IonicPage()
 @Component({
-    selector: 'login',
+    selector: 'signIn',
     templateUrl: 'signIn.html'
 })
 export class SignInPage {
@@ -26,7 +26,6 @@ export class SignInPage {
     }
 
     signIn(loginText) {
-        const modal =this.modalCtrl.create("SignedInPage", { 'myParam': loginText });
-        modal.present();
+        this.navCtrl.push("LoginConfirmedPage",{'myParam':loginText});
     }
 }

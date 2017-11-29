@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, ViewController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { MyCoursesPage } from '../../non-lazy/myCourses/myCourses';
 
 @IonicPage()
 @Component({
-    selector: 'signedIn',
-    templateUrl: './signedIn.html',
+    selector: 'loginConfirm',
+    templateUrl: './loginConfirmed.html',
     styles: [
         `ion-icon{
     font-size:100px;
@@ -15,23 +16,22 @@ import { IonicPage, NavController, ViewController, NavParams } from 'ionic-angul
     ]
 })
 
-export class SignedInPage {
+export class LoginConfirmedPage {
     myParam: any;
 
     constructor(
         private nav: NavController,
         private navParam: NavParams,
-        private viewCtrl: ViewController
     ) {
         this.myParam = navParam.get('myParam');
     }
 
     continueAsStudent() {
-        this.nav.setRoot(adfasd);
-        // this.nav.popToRoot();
+        this.nav.setRoot(MyCoursesPage);
+
+
+
     }
 
-    dismiss() {
-        this.viewCtrl.dismiss();
-    }
+
 }
