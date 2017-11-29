@@ -1,0 +1,61 @@
+<ion-header>
+
+    <ion-navbar>
+        <ion-toolbar>
+            <ion-buttons start>
+                <button ion-button color="light" (click)="dismiss()">
+                    <span color="light" showWhen="ios">Cancel</span>
+                    <ion-icon color="light" showWhen="android,windows" name="md-close"></ion-icon>
+                </button>
+            </ion-buttons>
+            <ion-title>
+                Register
+            </ion-title>
+        </ion-toolbar>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <img class="center-block" src="assets/images/logo2.png" width="500px">
+    <!-- Login with email -->
+    <ion-list no-margin>
+        <ion-item no-padding no-line-top>
+            <ion-label floating>Username or e-mail address</ion-label>
+            <ion-input type="text"></ion-input>
+        </ion-item>
+        <ion-item no-padding>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password"></ion-input>
+        </ion-item>
+        <button ion-button clear small no-padding>
+            <span class="text_small colorPrimary">Forget Password?</span>
+        </button>
+    </ion-list>
+
+    <button color="light_green" ion-button full (click)="signIn('Signed In Successfully')">Sign in</button>
+    <!-- /Login with email -->
+    <!-- Login with google and facebook block    -->
+    <ion-badge class="center-block box-shadow" text-center margin-top>or sign in with</ion-badge>
+    <ion-row margin-top>
+        <ion-col>
+            <button ion-button full item-end icon-left color="facebook" (click)="signIn('Signed In using Facebook')">
+                <ion-icon name="logo-facebook" icon-left></ion-icon>
+                Facebook
+            </button>
+        </ion-col>
+        <ion-col>
+            <button ion-button full item-end icon-left color="google" (click)="signIn('Signed In Using Google')">
+                <ion-icon name="logo-googleplus"></ion-icon>
+                Google
+            </button>
+        </ion-col>
+    </ion-row>
+    <!-- /Login with google and facebook block -->
+    <div text-center>
+        <span class="text_small textGray">By signing in to this app, you agree to the</span>
+        <br>
+        <span class="text_small textPrimary">
+            <b>Blue Stream Academy Terms of Services and Honor Code</b>
+        </span>
+    </div>
+</ion-content>

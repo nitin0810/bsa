@@ -1,18 +1,18 @@
 import { Component } from '@angular/core';
-import { IonicPage,NavController, ViewController, NavParams } from 'ionic-angular';
-import {  } from 'ionic-angular/navigation/view-controller';
-// import { MyCoursesPage } from '../myCourses/myCourses';
+import { IonicPage, NavController, ViewController, NavParams } from 'ionic-angular';
 
 @IonicPage()
 @Component({
     selector: 'signedIn',
     templateUrl: './signedIn.html',
-    styles: [`ion-icon{
+    styles: [
+        `ion-icon{
     font-size:100px;
         }
         ion-card{
         background: #2196F3;   
-        }`]
+        }`
+    ]
 })
 
 export class SignedInPage {
@@ -20,18 +20,18 @@ export class SignedInPage {
 
     constructor(
         private nav: NavController,
-         private navParam: NavParams,
-         private viewCtrl:ViewController
+        private navParam: NavParams,
+        private viewCtrl: ViewController
     ) {
         this.myParam = navParam.get('myParam');
     }
 
     continueAsStudent() {
-        // this.nav.setRoot(MyCoursesPage);
+        this.nav.setRoot(adfasd);
         // this.nav.popToRoot();
     }
 
-    dismiss(){
+    dismiss() {
         this.viewCtrl.dismiss();
     }
 }

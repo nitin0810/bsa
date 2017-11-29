@@ -33,11 +33,12 @@ export class WelcomePage {
     }
 
     openLoginPage() {
-        const modal = this.modalCtrl.create("LoginModule");
+        const modal = this.modalCtrl.create("SignInPage");
         modal.present();
     }
 
     openAllCoursesPage() {
+        
         // this.navCtrl.push(AllCoursesPage);
     }
 }
