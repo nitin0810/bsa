@@ -1,81 +1,53 @@
 import { Injectable } from '@angular/core';
-import { Http, XHRBackend, RequestOptions, Request, RequestOptionsArgs, Response, Headers } from '@angular/http';
+import { HttpClient, HttpHandler, HttpResponse, HttpHeaders } from '@angular/common/http';
+// import {Http} from '@angular/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
 
-function getToken(): any {
-
-    let token = localStorage.getItem('access_token');
-    let header;
-    let userId = localStorage.getItem('isStudent') === "true" ? "gulf_student:riddhi" : "gulf_management:riddhi";
-    if (!token) {
-        header = 'Basic ' + btoa(userId);
-    } else {
-        header = 'Bearer ' + localStorage.getItem('access_token') || '';
-    }
-    return header;
-}
-
 @Injectable()
-export class CustomHttpService extends Http {
+export class CustomHttpService {
 
-    constructor(backend: XHRBackend, options: RequestOptions) {
+    constructor(private httpClient: HttpClient) { }
 
+    getAccessToken() {
 
-        options.headers = new Headers({
-            'Authorization': `${getToken()}`,
-            'account': localStorage.getItem('loginType')
-        });
+        let userId = localStorage.getItem('isStudent') === "true" ? "gulf_student:riddhi" : "gulf_management:riddhi";
 
-        super(backend, options);
+        return !localStorage.getItem('access_token') ? 'Basic ' + btoa(userId) : 'Bearer ' + localStorage.getItem('access_token') || '';
     }
 
-    // its like interceptor, calls by each methods internally like get, post, put, delete etc
-    request(url: string | Request, options?: RequestOptionsArgs): Observable<Response> {
+    addHeaders(optionalHeaders?: HttpHeaders) {
 
-        if (typeof url === 'string') {
-            if (!options) {
-                options = { headers: new Headers() };
+        let requestHeaders = new HttpHeaders().set('Authorization', this.getAccessToken());
+        if (optionalHeaders) {
+            for (const header of optionalHeaders.keys()) {
+                requestHeaders = requestHeaders.append(header, optionalHeaders.get(header));
             }
-
-            options.headers.set('Authorization', `${getToken()}`);
-            options.headers.set('account', localStorage.getItem('loginType'));
-        } else {
-            
-                url.headers.set('Authorization', `${getToken()}`);
-                url.headers.set('account', localStorage.getItem('loginType'));
-           
-
         }
-        return super.request(url, options);
+        return requestHeaders;
     }
 
-    get(url: string, options?: RequestOptionsArgs): Observable<Response> {
 
-        return super.get(url, options)
+
+    get(url: string, options?: HttpHeaders) {
+
+        let headers = this.addHeaders(options);
+        return this.httpClient.get(url, { headers: headers, observe: 'response' })
             .map(this.extractData)
             .catch(this.handleError);
     }
 
-    post(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
 
-        return super.post(url, body, options)
-            .map(this.extractData)
-            .catch(this.handleError);
-    }
 
-    put(url: string, body: any, options?: RequestOptionsArgs): Observable<Response> {
 
-        return super.put(url, body, options)
-            .map(this.extractData)
-            .catch(this.handleError);
-    }
+    extractData(res: any) {
 
-    
-    extractData(res: Response) {
+        console.log('inside extract data', res);
+
+
         /**
         * res.json() raises exception if body is not a valid json or body is not present in response
         * that's why it is written in try block
@@ -89,7 +61,8 @@ export class CustomHttpService extends Http {
         }
     }
 
-    handleError(error: Response | any) {
+    handleError(error: any) {
+        console.log('inside handle error');
 
         console.log(error);
         let err: any = {};
