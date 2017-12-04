@@ -1,25 +1,24 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHandler, HttpResponse, HttpHeaders } from '@angular/common/http';
-// import {Http} from '@angular/http';
+import { HttpClient, HttpResponse, HttpHeaders, HttpErrorResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
-
+import { BASEURL } from './app.constants';
 
 @Injectable()
 export class CustomHttpService {
 
     constructor(private httpClient: HttpClient) { }
 
-    getAccessToken() {
+    private getAccessToken() {
 
         let userId = localStorage.getItem('isStudent') === "true" ? "gulf_student:riddhi" : "gulf_management:riddhi";
 
         return !localStorage.getItem('access_token') ? 'Basic ' + btoa(userId) : 'Bearer ' + localStorage.getItem('access_token') || '';
     }
 
-    addHeaders(optionalHeaders?: HttpHeaders) {
+    private addHeaders(optionalHeaders?: HttpHeaders) {
 
         let requestHeaders = new HttpHeaders().set('Authorization', this.getAccessToken());
         if (optionalHeaders) {
@@ -32,63 +31,42 @@ export class CustomHttpService {
 
 
 
-    get(url: string, options?: HttpHeaders) {
+    get(url: string, options?: HttpHeaders){
 
-        let headers = this.addHeaders(options);
-        return this.httpClient.get(url, { headers: headers, observe: 'response' })
+        // let headers = this.addHeaders(options);
+        // return this.httpClient.get(BASEURL+url, { headers: headers, observe: 'response' })
+        //     .map(this.extractData)
+        //     .catch(this.handleError);
+
+        return this.httpClient.get(BASEURL + url, { observe: 'response' })
             .map(this.extractData)
             .catch(this.handleError);
     }
 
+    private extractData(res: HttpResponse<any>) {
 
-
-
-    extractData(res: any) {
-
-        console.log('inside extract data', res);
-
-
-        /**
-        * res.json() raises exception if body is not a valid json or body is not present in response
-        * that's why it is written in try block
-        * */
-        // console.log(res);
-
-        try {
-            return res.json();
-        } catch (error) {
-            return res.status;
-        }
+        // console.log('inside extract data', res);
+        return res.body || res.status;
     }
+   
+    private handleError(err: HttpErrorResponse) {
+        // console.log('inside handle error', err);
+        let errorInfo: any = {};
 
-    handleError(error: any) {
-        console.log('inside handle error');
-
-        console.log(error);
-        let err: any = {};
-        if (error instanceof Response) {
-
-            let body;
-            try {
-                body = error.json();
-            } catch (error) {
-                body = '';
-            }
-
-            let errMsg = body.error || 'Internal server error, Try again later ';
-            err.status = error.status;
-            err.msg = errMsg;
-
-            if (error.status === 0) {
-                err.status = 0;
-                err.msg = 'No Internet, Check Your connection Or Try again';
-            }
+        if (err.error instanceof Error || err.error instanceof ProgressEvent) {
+            /**A client-side or network error occurred. Handle it accordingly.*/
+            // console.log('An error occurred:', );
+            errorInfo.status = err.status;
+            errorInfo.status == 0 ? errorInfo.msg = "No Internet, Check Your connection Or Try again" : errorInfo = err.message || 'Some Error Occured';
         }
         else {
-            err = error.message ? error.message : error.toString();
+            /**The backend returned an unsuccessful response code.*/
+            // console.log('Server occurred:', err);
+            errorInfo.status = err.status;
+            errorInfo.msg = err.error.error || err.error.message || 'Internal Server Error';
         }
+        return Observable.throw(errorInfo);
 
-        return Observable.throw(err);
     }
 
 }

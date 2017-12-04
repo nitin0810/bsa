@@ -34,10 +34,10 @@ export class MyApp {
       splashScreen.hide();
     });
 
-    this.decideSideMenuContent();
+    this.setSideMenuContent();
   }
 
-  decideSideMenuContent(){
+  setSideMenuContent(){
 
     this.pages = [
       { title: 'Categories', component: 'CourseCategoriesPage', icon: 'http://icons.iconarchive.com/icons/zerode/plump/256/Folder-Office-icon.png' },
