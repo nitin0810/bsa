@@ -34,7 +34,7 @@
             Course Categories
         </ion-list-header>
         <div class="horizontal-scroll textWhite card2">
-            <ion-card *ngFor="let category of categories" (click)="openCoursePage(category.category)">
+            <ion-card *ngFor="let category of categories" (click)="openCategoryDetailPage(category.courseCategoryId)">
                 <img [src]='category.img' [alt]="category.category">
                 <div class="slide2-bottom">
                     {{ category.category }}

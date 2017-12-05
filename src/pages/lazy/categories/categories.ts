@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController,IonicPage } from 'ionic-angular';
+import { NavController, IonicPage } from 'ionic-angular';
+import { GeneralService } from '../../../services/general.service';
+import { CustomService } from '../../../services/custom.service';
 
 
 @IonicPage()
@@ -14,11 +16,36 @@ import { NavController,IonicPage } from 'ionic-angular';
 })
 export class CourseCategoriesPage {
 
-  constructor(public navCtrl: NavController) {
+  categories: Array<any>;
+  constructor(
+    private navCtrl: NavController,
+    private generalService: GeneralService,
+    private customService: CustomService
+  ) {
+    this.fetchCoursesDetails();
+  }
+
+  fetchCoursesDetails() {
+
+    if (localStorage.getItem("coursesDetails") !== null) {
+      this.categories = JSON.parse(localStorage.getItem("coursesDetails"));
+      return;
+    }
+    
+    this.customService.showLoader();
+    this.generalService.getMyCoursesPageInfo()
+      .subscribe((res: any) => {
+        this.categories = res;
+        this.generalService.storeCoursesDetails(res);
+        this.customService.hideLoader();
+      }, (err: any) => {
+        this.customService.hideLoader();
+        this.customService.showToast(err.msg);
+      });
 
   }
 
-  openAllCoursesPage(){
-    // this.navCtrl.push(AllCoursesPage);
-}
+  openCategoryDetailPage(categoryId: number) {
+    this.navCtrl.push("CategoryDetailPage", { 'categoryId': categoryId });
+  }
 }

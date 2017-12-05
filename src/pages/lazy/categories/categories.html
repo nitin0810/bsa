@@ -1,58 +1,22 @@
 <ion-header>
     <ion-navbar>
-      <button ion-button menuToggle>
-        <ion-icon name="menu"></ion-icon>
-      </button>
-      <ion-title>Categories</ion-title>
+        <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+        </button>
+        <ion-title>Categories</ion-title>
     </ion-navbar>
-  </ion-header>
-  
-  <ion-content style="background:lightgray">
+</ion-header>
+
+<ion-content style="background:lightgray">
     <ion-list>
         <ion-row class="textPrimary" text-center>
-            <ion-col col-6>
-                <ion-card padding (click)="openAllCoursesPage()">
-                    <ion-icon name="beaker" class="big"></ion-icon>
+            <ion-col col-6 *ngFor="let categ of categories">
+                <ion-card padding (click)="openCategoryDetailPage(categ.courseCategoryId)">
+                    <img [src]="categ.img">
                     <br>
-                    <b class="text_small">GP Practice</b>
+                    <b class="text_small">{{categ.category}}</b>
                 </ion-card>
             </ion-col>
-            <ion-col col-6>
-                <ion-card padding (click)="openAllCoursesPage()">
-                    <ion-icon name="md-analytics" class="textPrimary big"></ion-icon>
-                    <br>
-                    <b class="text_small">Dental Practice</b>
-                </ion-card>
-            </ion-col>
-            <ion-col col-6>
-                <ion-card padding (click)="openAllCoursesPage()">
-                    <ion-icon name="md-aperture" class="big"></ion-icon>
-                    <br>
-                    <b class="text_small">Nursing/Care Home</b>
-                </ion-card>
-            </ion-col>
-            <ion-col col-6>
-                <ion-card padding (click)="openAllCoursesPage()">
-                    <ion-icon name="md-barcode" class="textPrimary big"></ion-icon>
-                    <br>
-                    <b class="text_small">Hospice</b>
-                </ion-card>
-            </ion-col>
-            <ion-col col-6>
-                <ion-card padding (click)="openAllCoursesPage()">
-                    <ion-icon name="md-beaker" class="big"></ion-icon>
-                    <br>
-                    <b class="text_small">Urgent Care</b>
-                </ion-card>
-            </ion-col>
-            <ion-col col-6>
-                <ion-card padding (click)="openAllCoursesPage()">
-                    <ion-icon name="md-browsers" class="textPrimary big"></ion-icon>
-                    <br>
-                    <b class="text_small">The Care Certificate</b>
-                </ion-card>
-            </ion-col>                                    
         </ion-row>
-      </ion-list>
-  </ion-content>
-  
+    </ion-list>
+</ion-content>

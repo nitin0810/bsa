@@ -243,3 +243,30 @@ ul {
   .gray_backgorund{
       background:#f3f3f3;
   }
+
+
+
+/**for course list*/
+
+  .course_card{
+    height:150px;
+    position:relative;
+}
+.course_card .footer{
+    position: absolute;
+    bottom: 0;
+    height: 50px;
+    width:100%;
+    background: rgba(0, 0, 0, 0.67);
+    padding:5px;
+}
+.course_card h1{
+    color: white;
+    font-size: 16px;
+}
+.float_left{
+    float:left;
+}
+.float_right{
+    float:right;
+}
