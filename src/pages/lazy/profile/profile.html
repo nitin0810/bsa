@@ -1,0 +1,68 @@
+<ion-header>
+        <ion-navbar>
+          <button ion-button menuToggle>
+            <ion-icon name="menu"></ion-icon>
+          </button>
+          <ion-title>Profile</ion-title>
+        </ion-navbar>
+      </ion-header>
+      
+      <ion-content style="background:lightgray">
+        <ion-card class="round-card" padding>
+            <ion-row>
+                <ion-col col-5>
+                    <img src="assets/images/pic.png" class="circle-center-img">
+                </ion-col>
+                <ion-col col-7>
+                    <b class="textPrimary">Asras Rashid</b>
+                    <p class="text_small">Consultant Paediatric Intensivist</p>
+                    <ion-item no-lines no-padding margin-top>
+                        <div class="circle-text background15 textWhite" no-lines item-left >
+                            <ion-icon name="document"></ion-icon>
+                        </div>
+                        <h5>21 Courses</h5>
+                        <p class="text_small textGray">34% Completed</p>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+        </ion-card>
+
+        <div padding>
+        <ion-card ion-item>
+            <ion-thumbnail item-start>
+                    <img src="https://i.ytimg.com/vi/4OkZocjuM6U/hqdefault.jpg">
+                </ion-thumbnail>
+                <span class="title">Chaperoning</span>
+                <ion-badge text-right class="text_small float_right" color="finished">Finished</ion-badge>
+                <div class="progress">
+                    <!-- <progress class="bar" value="100" max="100"></progress> -->
+                    <!-- <ion-badge class="text_small float_right">12 hrs left</ion-badge> -->
+                </div>
+        </ion-card>
+        <ion-card ion-item margin-top>
+            <ion-thumbnail item-start>
+                    <img src="http://sekojstudent.org/wp-content/uploads/2016/07/conflict-resolution-strategies.jpg">
+                </ion-thumbnail>
+                <span class="title">Conflict Resolution</span>
+                <ion-badge text-right class="text_small float_right" color="color17">Pre-requisite</ion-badge>
+                <div class="progress">
+                    <progress class="bar background16" value="0" max="100"></progress>
+                    <ion-badge class="text_small float_right">9 days</ion-badge>
+                </div>
+        </ion-card>
+        <ion-card ion-item margin-top margin-bottom>
+                <ion-thumbnail item-start>
+                        <img src="http://www.actionforcarers.org.uk/files/1213/6318/0972/Young_woman_with_GP.jpg">
+                    </ion-thumbnail>
+                    <span class="title">Carer Awareness</span>
+                    <ion-badge text-right class="text_small float_right" color="inprogress">In Progress</ion-badge>
+                    <div class="progress">
+                        <progress class="bar background16" value="55" max="100"></progress>
+                        <ion-badge class="text_small float_right">12 hrs</ion-badge>
+                    </div>
+            </ion-card>
+
+            <button ion-button full color="color2" margin-top (click)="openWelcomePage()">Logout</button>
+        </div>
+      </ion-content>
+      
