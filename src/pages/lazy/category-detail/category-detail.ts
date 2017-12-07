@@ -14,7 +14,7 @@ export class CategoryDetailPage {
     category: any;
     constructor(
         private navCtrl: NavController,
-        private navParam: NavParams
+        private navParam: NavParams,
     ) {
 
         let categoryId:number = this.navParam.get('categoryId');

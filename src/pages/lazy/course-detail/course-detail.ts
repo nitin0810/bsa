@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, IonicPage } from 'ionic-angular';
 import { NavParams } from 'ionic-angular/navigation/nav-params';
+import { GeneralService } from '../../../services/general.service';
 
 
 @IonicPage()
@@ -41,13 +42,18 @@ export class CourseDetailPage {
 
   constructor(
     private navCtrl: NavController,
-    private navParams: NavParams
+    private navParams: NavParams,
+    private generalService:GeneralService
   ) {
     this.course = this.navParams.get('course');
   }
 
-  openTopicPage() {
-
+  openTopicPage(topic: any,chapterName:string) {
+    let tempPage:string = this.generalService.getTemplatePageName(topic.pages[0].template);
+    console.log(tempPage);
+    
+      this.navCtrl.push(tempPage,{'topicId':topic.topicId,'chapterName':chapterName});//cahpterName is sent to show in the navbar heading
+    
   }
 
 }

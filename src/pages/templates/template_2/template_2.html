@@ -1,0 +1,25 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{chapterName}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="background15" padding>
+
+        <h4 *ngIf="data.heading" text-center class="textWhite">{{data.heading}}</h4>
+    
+        <ion-row text-center>
+    
+            <ion-col *ngFor="let button of data.buttons; let i=index" col-6 padding>
+
+                <!-- 'data.type' can either be "BUTTON" or "IMAGE"  -->
+                <button *ngIf="data.type=='BUTTON'" color="white" large ion-button class="circle-button-exlg" (click)="openModel(button)">
+                    <span class="textPrimary">{{button.title}}</span>
+                </button>
+
+                <img *ngIf="data.type=='IMAGE'" [src]="button.image" (tap)="openModel(button)">
+
+            </ion-col>
+    
+        </ion-row>
+    </ion-content>
