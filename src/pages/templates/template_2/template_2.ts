@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, IonicPage, NavParams } from 'ionic-angular';
+import { NavController, IonicPage, NavParams, ModalController } from 'ionic-angular';
 import { CustomService } from '../../../services/custom.service';
 import { GeneralService } from '../../../services/general.service';
 
@@ -16,6 +16,7 @@ export class Template_2 {
     chapterName: string; //to show in the navbar heading
     constructor(
         private navParams: NavParams,
+        private modalCtrl: ModalController,
         private generalService: GeneralService
     ) {
         this.data = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
@@ -23,6 +24,7 @@ export class Template_2 {
     }
 
     openModel(buttonData: any) {
-
+        const modal = this.modalCtrl.create("Template_2_modal", { 'data': { data: buttonData, type: this.data.type }, 'chapterName': this.chapterName });
+        modal.present();
     }
 }
