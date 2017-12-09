@@ -52,7 +52,7 @@
         <ion-item-sliding *ngFor="let course of subscribedCourses">
             <button ion-item (click)="openCourseDetailPage(course)">
                 <ion-thumbnail item-start>
-                    <img [src]='course.img'>
+                    <img [src]='course.image'>
                 </ion-thumbnail>
                 <span class="title">{{ course.course }} </span>
                 <ion-badge text-right class="text_small float_right" [style.background]="color">Not Started</ion-badge>

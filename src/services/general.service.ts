@@ -17,7 +17,8 @@ export class GeneralService {
     setTemplatesInfo() {
         this.templatesInfo = {
             "FIRST": "Template_1",
-            "SECOND":"Template_2"
+            "SECOND":"Template_2",
+            "THIRD":"Template_3"
         }
     }
 
@@ -28,7 +29,7 @@ export class GeneralService {
 
     getMyCoursesPageInfo() {
 
-        return this.http.get('/category');
+        return this.http.get('/categories');
     }
 
     storeCoursesDetails(coursesDetails: Array<any>) {
@@ -44,6 +45,7 @@ export class GeneralService {
             catg.courses.forEach((course: any) => {
                 course.chapters.forEach((chapter: any) => {
                     chapter.topics.forEach((topic: any) => {
+                     
                         topic.pages[0] && (this.topicWiseData[topic.topicId] = topic.pages[0].data);
                     });
                 });
@@ -51,8 +53,10 @@ export class GeneralService {
 
         });
 
-        // console.log(this.topicWiseData);
+        console.log(this.topicWiseData);
     }
+
+ 
 
     getDataByTopicId(id: number) {
         return this.topicWiseData[id];

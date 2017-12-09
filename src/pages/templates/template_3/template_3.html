@@ -1,0 +1,17 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{chapterName}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <h4 *ngIf="data.heading">{{data.heading}}</h4>
+
+    <ion-list>
+        <button ion-item *ngFor="let case of data.caseStudies;let i =index" (click)="openCaseStudy(case,i+1)">
+            <ion-label>Case Study {{i+1}}</ion-label>
+        </button>
+    </ion-list>
+
+</ion-content>
