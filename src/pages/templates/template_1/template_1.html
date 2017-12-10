@@ -4,11 +4,11 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content style="background:lightgray">
+<ion-content class="content-gray">
 
     <ion-list *ngIf="data.heading">
         <ion-list-header>
-            {{data.heading}}
+            <b>{{data.heading}}</b>
         </ion-list-header>
     </ion-list>
 
@@ -24,34 +24,26 @@
     <div *ngIf="data.bullets && data.bullets.length!=0">
         <ion-card>
             <ul>
-                <li *ngFor="let bullet of data.bullets">
-                    {{ bullet.bullet}}
+                <li *ngFor="let bullet of data.bullets" >
+                    {{ bullet.bullet }}
                 </li>
             </ul>
         </ion-card>
     </div>
 
     <div *ngIf="data.paragraph && data.paragraph.length!=0">
-        <ion-card>
-            <div padding *ngFor="let para of data.paragraph">
-                <h4 *ngIf="para.title">{{para.title}}</h4>
-                <p *ngIf="para.description">{{para.description}}</p>
+        <ion-card *ngFor="let para of data.paragraph">
+                <img *ngIf="para.image" [src]="para.image" />
+                <h2 *ngIf="para.title">{{para.title}}</h2>
+                <p padding *ngIf="para.description">{{para.description}}</p>
 
-                <div *ngIf="para.bullets && para.bullets.length!=0">
-                    <br>
+                <div padding *ngIf="para.bullets && para.bullets.length!=0">
                     <ul>
                         <li *ngFor="let bullet of para.bullets">
                             {{ bullet.bullet}}
                         </li>
                     </ul>
                 </div>
-                
-                <div *ngIf="para.image">
-                    <img [src]="para.image" />
-                </div>
-
-            </div>
-
         </ion-card>
     </div>
 

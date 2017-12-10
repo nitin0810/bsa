@@ -8,6 +8,13 @@ import { GeneralService } from '../../../services/general.service';
 @Component({
     selector: 'temp_1',
     templateUrl: './template_1.html',
+    styles:[
+        `
+        ion-label{
+            white-space:pre-line;
+        }
+        `
+    ]
 
 })
 export class Template_1 {

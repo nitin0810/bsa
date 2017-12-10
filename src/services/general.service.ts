@@ -28,7 +28,7 @@ export class GeneralService {
 
     getMyCoursesPageInfo() {
 
-        return this.http.get('/category');
+        return this.http.get('/categories');
     }
 
     storeCoursesDetails(coursesDetails: Array<any>) {
