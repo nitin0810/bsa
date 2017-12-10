@@ -215,7 +215,10 @@
 }
 
 .paragraph{
-    white-space: pre-line;
+    white-space: pre-line !important;
+    ion-label{
+        white-space: pre-line !important;
+    }
 }
 .background15{
     background-color:color($colors,color15);
@@ -269,4 +272,15 @@ ul {
 }
 .float_right{
     float:right;
+}
+
+ul{
+    padding-left:5px;
+    list-style: initial;
+}
+ul li:before{
+    content:none !important;
+}
+.content-gray{
+    background: #e9ebee !important;
 }
