@@ -1,0 +1,74 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>Case Study {{caseStudyNumber}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+
+    <div *ngIf="caseStudy.background">
+        <h3>Background</h3>
+        <p>{{caseStudy.background}}</p>
+    </div>
+    <div *ngIf="caseStudy.issue">
+        <h4>Issue</h4>
+        <p>{{caseStudy.issue}}</p>
+    </div>
+    <div *ngIf="caseStudy.incident">
+        <h4>Incident</h4>
+        <p>{{caseStudy.incident}}</p>
+    </div>
+    <div *ngIf="caseStudy.decision">
+        <h4>Decision</h4>
+        <p>{{caseStudy.decision}}</p>
+    </div>
+    <div *ngIf="caseStudy.conclusion">
+        <h4>Conclusion</h4>
+        <p>{{caseStudy.conclusion}}</p>
+    </div>
+
+    <div *ngIf="caseStudy.questionnaire && caseStudy.questionnaire.length!=0">
+        <div *ngFor="let quesSet of caseStudy.questionnaire">
+            <h3 *ngIf="quesSet.heading">{{quesSet.heading}}</h3>
+            <div *ngFor="let ques of quesSet.questions; let i =index">
+                <h5>{{ques.question}}</h5>
+
+                <div *ngIf="ques.type=='SINGLECHOICE'">
+                    Select Single
+                    <br>
+                    <ion-list radio-group [(ngModel)]="selectedAnsObj[ques.questionId]">
+                        <ion-item *ngFor="let option of ques.options">
+                            <ion-label>{{option.option}}</ion-label>
+                            <ion-radio [value]="option.optionsId"></ion-radio>
+                        </ion-item>
+                    </ion-list>
+                    <button ion-button [disabled]="!selectedAnsObj[ques.questionId]" (click)="checkAnswer(ques,i)">Submit</button>
+
+                </div>
+
+                <div *ngIf="ques.type=='MULTIPLECHOICE'">
+                    Select Multiple
+                    <br>
+                    <ion-list>
+                        <ion-item *ngFor="let option of ques.options">
+                            <ion-label>{{option.option}}</ion-label>
+                            <ion-checkbox [(ngModel)]="selectedAnsObj[ques.questionId][option.optionsId]"></ion-checkbox>
+                        </ion-item>
+                    </ion-list>
+                    <button ion-button [disabled]="!(selectedAnsObj[ques.questionId].keys().length!=0)" (click)="checkAnswer(ques,i)">Submit</button>
+
+                </div>
+                <div *ngIf="submitPressed[i]">
+                    <h4>{{ques.correctOrIncorrect}}</h4>
+                    <p >{{this.correctAnswerDescription[ques.questionId]}}</p>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+
+
+
+
+</ion-content>
