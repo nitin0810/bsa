@@ -39,7 +39,7 @@
                     <ion-list radio-group [(ngModel)]="selectedAnsObj[ques.questionId]">
                         <ion-item *ngFor="let option of ques.options">
                             <ion-label>{{option.option}}</ion-label>
-                            <ion-radio [value]="option.optionsId"></ion-radio>
+                            <ion-radio [value]="option.optionsId" [disabled]="submitPressed[i]"></ion-radio>
                         </ion-item>
                     </ion-list>
                     <button ion-button [disabled]="!selectedAnsObj[ques.questionId]" (click)="checkAnswer(ques,i)">Submit</button>
@@ -52,13 +52,14 @@
                     <ion-list>
                         <ion-item *ngFor="let option of ques.options">
                             <ion-label>{{option.option}}</ion-label>
-                            <ion-checkbox [(ngModel)]="selectedAnsObj[ques.questionId][option.optionsId]"></ion-checkbox>
+                            <ion-checkbox [(ngModel)]="selectedAnsObj[ques.questionId][option.optionsId]" [disabled]="submitPressed[i]"></ion-checkbox>
                         </ion-item>
                     </ion-list>
                     <button ion-button [disabled]="!(selectedAnsObj[ques.questionId].keys().length!=0)" (click)="checkAnswer(ques,i)">Submit</button>
 
                 </div>
                 <div *ngIf="submitPressed[i]">
+                    <img [src]="ques.correctOrIncorrectIcon" style="width:50px">
                     <h4>{{ques.correctOrIncorrect}}</h4>
                     <p >{{this.correctAnswerDescription[ques.questionId]}}</p>
                 </div>

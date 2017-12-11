@@ -21,6 +21,7 @@ export class CategoryDetailPage {
         let categories:Array<any> = JSON.parse(localStorage.getItem('coursesDetails'));
         
         this.category = categories.find((catg:any)=>catg.courseCategoryId==categoryId);
+        
     }
 
 }

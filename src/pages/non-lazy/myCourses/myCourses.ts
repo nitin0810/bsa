@@ -45,7 +45,7 @@ export class MyCoursesPage {
             .subscribe((res: any) => {
                 this.categories = res;
                 this.setSubscribedCourses(res);
-                // this.generalService.storeCoursesDetails(res);
+                this.generalService.storeCoursesDetails(res);
                 this.generalService.storeTopicwiseData(res);
                 this.customService.hideLoader();
             }, (err: any) => {
