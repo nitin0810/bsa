@@ -18,7 +18,8 @@ export class GeneralService {
         this.templatesInfo = {
             "FIRST": "Template_1",
             "SECOND":"Template_2",
-            "THIRD":"Template_3"
+            "THIRD":"Template_3",
+            "FOURTH":"Template_4"
         }
     }
 

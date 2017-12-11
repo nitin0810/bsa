@@ -1,0 +1,69 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{chapterName}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <!-- TODO:make the slides vertically scrollable -->
+    <ion-slides (ionSlideDidChange)="onSlideChange()">
+        <ion-slide *ngFor="let ques of data.questions;let i =index">
+            <h5>Question {{i+1}}</h5>
+            <h6>{{ques.question}}</h6>
+
+            <div *ngIf="ques.type=='SINGLECHOICE'">
+                Select Single
+                <br>
+                <ion-list radio-group [(ngModel)]="selectedAnsObj[ques.questionId]">
+                    <ion-item text-wrap *ngFor="let option of ques.options">
+                        <ion-label>{{option.option}}</ion-label>
+                        <ion-radio [value]="option.optionsId" [disabled]="submitPressed[i]" ></ion-radio>
+                    </ion-item>
+                </ion-list>
+                <button ion-button  [disabled]="!selectedAnsObj[ques.questionId]" (click)="checkAnswer(ques,i)">Submit</button>
+
+            </div>
+
+            <div *ngIf="ques.type=='MULTIPLECHOICE'">
+                Select Multiple
+                <br>
+                <ion-list>
+                    <ion-item text-wrap *ngFor="let option of ques.options">
+                        <ion-label>{{option.option}}</ion-label>
+                        <ion-checkbox [(ngModel)]="selectedAnsObj[ques.questionId][option.optionsId]" [disabled]="submitPressed[i]" (click)="changeSubmitBtnStatus(ques)"></ion-checkbox>
+                    </ion-item>
+                </ion-list>
+                <button ion-button [disabled]="!(ques.oneOptionSelected)" (click)="checkAnswer(ques,i)">Submit</button>
+
+            </div>
+            <div *ngIf="submitPressed[i]">
+                <img [src]="ques.correctOrIncorrectIcon" style="width:50px">
+                <h4>{{ques.correctOrIncorrect}}</h4>
+                <p>{{this.correctAnswerDescription[ques.questionId]}}</p>
+            </div>
+        </ion-slide>
+        <ion-slide>
+            <h1>FINISH</h1>
+            <h5>You clear/fail the knowledge Test !!</h5>
+        </ion-slide>
+    </ion-slides>
+</ion-content>
+
+<ion-footer no-padding>
+    <ion-toolbar no-padding>
+        <ion-row no-padding>
+            <ion-col col-6 no-padding>
+                <button [disabled]="!prevBtnEnabled" ion-button icon-only clear full text-center color="white" (click)="goToPrevQuestion()">
+                    <ion-icon name="arrow-dropleft-circle"></ion-icon>Prev
+                </button>
+            </ion-col>
+        
+            <ion-col col-6 no-padding>
+                <button [disabled]="!nextBtnEnabled" ion-button icon-only clear full text-center color="white" (click)="goToNextQuestion()">
+                    Next
+                    <ion-icon name="arrow-dropright-circle"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>
