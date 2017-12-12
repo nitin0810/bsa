@@ -13,8 +13,7 @@ import { GeneralService } from '../../../services/general.service';
 export class Template_4 {
 
     @ViewChild(Slides) slides: Slides;
-    data: any;
-    chapterName: string;
+    topic: any;
     nextBtnEnabled: boolean = false;
     prevBtnEnabled: boolean = false;
 
@@ -29,9 +28,8 @@ export class Template_4 {
         private navCtrl: NavController,
         private generalService: GeneralService
     ) {
-        this.data = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
-        this.chapterName = this.navParams.get('chapterName');
-        this.setquestAnsObject(this.data.questions);
+        this.topic = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
+        this.setquestAnsObject(this.topic.data.questions);
     }
 
     ngAfterViewInit() {
@@ -121,7 +119,7 @@ export class Template_4 {
 
     resetBtnsStatus() {
         let currentIndex = this.slides.getActiveIndex();
-        this.nextBtnEnabled = this.submitPressed[currentIndex] && (currentIndex < this.data.questions.length);
+        this.nextBtnEnabled = this.submitPressed[currentIndex] && (currentIndex < this.topic.data.questions.length);
         this.prevBtnEnabled = currentIndex != 0;
     }
     goToPrevQuestion() {

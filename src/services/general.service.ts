@@ -17,9 +17,9 @@ export class GeneralService {
     setTemplatesInfo() {
         this.templatesInfo = {
             "FIRST": "Template_1",
-            "SECOND":"Template_2",
-            "THIRD":"Template_3",
-            "FOURTH":"Template_4"
+            "SECOND": "Template_2",
+            "THIRD": "Template_3",
+            "FOURTH": "Template_4"
         }
     }
 
@@ -42,12 +42,39 @@ export class GeneralService {
 
         this.topicWiseData = {};
 
+        // categories.forEach((catg: any) => {
+        //     catg.courses.forEach((course: any) => {
+        //         course.chapters.forEach((chapter: any) => {
+        //             chapter.topics.forEach((topic: any) => {
+
+        //                 topic.pages[0] && (this.topicWiseData[topic.topicId] = topic.pages[0].data);
+        //             });
+        //         });
+        //     });
+
+        // });
+
+
+
         categories.forEach((catg: any) => {
             catg.courses.forEach((course: any) => {
                 course.chapters.forEach((chapter: any) => {
-                    chapter.topics.forEach((topic: any) => {
-                     
-                        topic.pages[0] && (this.topicWiseData[topic.topicId] = topic.pages[0].data);
+                    chapter.topics.forEach((topic: any, tIndex: number,topics:Array<any>) => {
+
+                        if (topic.pages[0]) {
+                            this.topicWiseData[topic.topicId] = {};
+                            this.topicWiseData[topic.topicId].data=  topic.pages[0].data; // remove this line in future when data comes individually from server
+                            this.topicWiseData[topic.topicId].template=  topic.pages[0].template; 
+                            // this.topicWiseData[topic.topicId].pageId=  topic.pages[0].pageId;
+                            // this.topicWiseData[topic.topicId].record=  topic.pages[0].record;
+                            this.topicWiseData[topic.topicId].topicId = topic.topicId;
+                            this.topicWiseData[topic.topicId].topicName = topic.topic;
+                            this.topicWiseData[topic.topicId].chapterName = chapter.chapter;
+                            this.topicWiseData[topic.topicId].chapterId = chapter.chapterId;
+                            this.topicWiseData[topic.topicId].prevTopicId = tIndex==0? null: topics[tIndex-1].topicId;
+                            this.topicWiseData[topic.topicId].nextTopicId = tIndex==(topics.length-1)? null: topics[tIndex+1].topicId;
+                            
+                        }
                     });
                 });
             });
@@ -57,7 +84,7 @@ export class GeneralService {
         console.log(this.topicWiseData);
     }
 
- 
+
 
     getDataByTopicId(id: number) {
         return this.topicWiseData[id];

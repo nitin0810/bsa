@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-import { NavController, IonicPage, NavParams, ModalController } from 'ionic-angular';
+import { Component, ViewChild } from '@angular/core';
+import { NavController, IonicPage, NavParams, ModalController, Navbar } from 'ionic-angular';
 import { CustomService } from '../../../services/custom.service';
 import { GeneralService } from '../../../services/general.service';
 
@@ -12,19 +12,54 @@ import { GeneralService } from '../../../services/general.service';
 })
 export class Template_2 {
 
+    @ViewChild(Navbar) navBar: Navbar;
+    topic: any;
     data: any;
-    chapterName: string; //to show in the navbar heading
     constructor(
         private navParams: NavParams,
         private modalCtrl: ModalController,
+        private navCtrl: NavController,
         private generalService: GeneralService
     ) {
-        this.data = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
-        this.chapterName = this.navParams.get('chapterName');
+        this.topic = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
+        this.data = this.topic.data;
     }
 
     openModel(buttonData: any) {
-        const modal = this.modalCtrl.create("Template_2_modal", { 'data': { data: buttonData, type: this.data.type }, 'chapterName': this.chapterName });
+        const modal = this.modalCtrl.create("Template_2_modal", { 'data': { data: buttonData, type: this.data.type } });
         modal.present();
+    }
+
+    ionViewDidLoad() {
+        this.navBar.backButtonClick = (ev: any) => {
+            console.log('asddddddddddddddddddd');
+            ev.preventDefault();
+            ev.stopPropagation();
+            this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
+        }
+    }
+
+    goToPrevTopic() {
+        if (this.topic.prevTopicId) {
+            let template = this.generalService.getDataByTopicId(this.topic.prevTopicId).template;
+            let templatePageName = this.generalService.getTemplatePageName(template);
+            this.navCtrl.push(templatePageName, { 'topicId': this.topic.prevTopicId });
+        } else {
+            this.goToContentPage();
+        }
+    }
+
+    goToContentPage() {
+        this.navCtrl.popTo(this.navCtrl.getByIndex(0));
+    }
+
+    goToNextTopic() {
+        if (this.topic.nextTopicId) {
+            let template = this.generalService.getDataByTopicId(this.topic.nextTopicId).template;
+            let templatePageName = this.generalService.getTemplatePageName(template);
+            this.navCtrl.push(templatePageName, { 'topicId': this.topic.nextTopicId });
+        } else {
+            this.goToContentPage();
+        }
     }
 }

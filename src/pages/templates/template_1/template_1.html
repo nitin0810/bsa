@@ -1,6 +1,6 @@
 <ion-header>
     <ion-navbar>
-        <ion-title>{{chapterName}}</ion-title>
+        <ion-title>{{topic.chapterName}}</ion-title>
     </ion-navbar>
 </ion-header>
 
@@ -24,7 +24,7 @@
     <div *ngIf="data.bullets && data.bullets.length!=0">
         <ion-card>
             <ul>
-                <li *ngFor="let bullet of data.bullets" >
+                <li *ngFor="let bullet of data.bullets">
                     {{ bullet.bullet }}
                 </li>
             </ul>
@@ -33,19 +33,41 @@
 
     <div *ngIf="data.paragraph && data.paragraph.length!=0">
         <ion-card *ngFor="let para of data.paragraph">
-                <img *ngIf="para.image" [src]="para.image" />
-                <h2 *ngIf="para.title">{{para.title}}</h2>
-                <p padding *ngIf="para.description">{{para.description}}</p>
+            <img *ngIf="para.image" [src]="para.image" />
+            <h2 *ngIf="para.title">{{para.title}}</h2>
+            <p padding *ngIf="para.description">{{para.description}}</p>
 
-                <div padding *ngIf="para.bullets && para.bullets.length!=0">
-                    <ul>
-                        <li *ngFor="let bullet of para.bullets">
-                            {{ bullet.bullet}}
-                        </li>
-                    </ul>
-                </div>
+            <div padding *ngIf="para.bullets && para.bullets.length!=0">
+                <ul>
+                    <li *ngFor="let bullet of para.bullets">
+                        {{ bullet.bullet}}
+                    </li>
+                </ul>
+            </div>
         </ion-card>
     </div>
 
 
 </ion-content>
+<ion-footer no-padding>
+    <ion-toolbar no-padding>
+        <ion-row no-padding>
+            <ion-col col-4 no-padding>
+                <button  ion-button icon-only clear full text-center color="white" (click)="goToPrevTopic()">
+                    <ion-icon name="arrow-dropleft-circle"></ion-icon>Prev
+                </button>
+            </ion-col>
+            <ion-col col-4 no-padding>
+                <button ion-button icon-only clear full text-center color="white" (click)="goToContentPage()">
+                    <ion-icon name="home"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col col-4 no-padding>
+                <button  ion-button icon-only clear full text-center color="white" (click)="goToNextTopic()">
+                    Next
+                    <ion-icon name="arrow-dropright-circle"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>
