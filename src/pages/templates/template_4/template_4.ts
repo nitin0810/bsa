@@ -36,7 +36,7 @@ export class Template_4 {
 
     ngAfterViewInit() {
 
-        this.slides.lockSwipeToNext(true);
+        this.slides.lockSwipes(true);
     }
 
 
@@ -125,16 +125,16 @@ export class Template_4 {
         this.prevBtnEnabled = currentIndex != 0;
     }
     goToPrevQuestion() {
-        this.slides.lockSwipeToNext(false);
+        this.slides.lockSwipes(false);
         this.slides.slidePrev();
-        this.slides.lockSwipeToNext(true);
+        this.slides.lockSwipes(true);
     }
 
     goToNextQuestion() {
-        this.slides.lockSwipeToNext(false);
+        this.slides.lockSwipes(false);
         this.slides.slideNext();
         this.nextBtnEnabled =false;
-        this.slides.lockSwipeToNext(true);
+        this.slides.lockSwipes(true);
 
     }
 }

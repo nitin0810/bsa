@@ -52,7 +52,7 @@ export class CourseDetailPage {
     let tempPage:string = this.generalService.getTemplatePageName(topic.pages[0].template);
     console.log(tempPage);
     
-      this.navCtrl.push(tempPage,{'topicId':topic.topicId,'chapterName':chapterName});//cahpterName is sent to show in the navbar heading
+      this.navCtrl.push(tempPage,{'topicId':topic.topicId,'chapterName':chapterName});//chapterName is sent to show in the navbar heading
     
   }
 

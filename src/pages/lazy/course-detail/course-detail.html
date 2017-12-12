@@ -46,13 +46,13 @@
                 <ion-list-header no-lines>
                     {{chapter.chapter}}
                 </ion-list-header>
-                <ion-item no-line-top *ngFor="let topic of chapter.topics; let i =index">
+                <button ion-item detail-none no-line-top *ngFor="let topic of chapter.topics; let i =index" (click)="openTopicPage(topic,chapter.chapter)">
                     <div class="circle-text" item-left>
                         {{i+1}}
                     </div>
                     <div>{{topic.topic}}</div>
-                    <button item-end ion-button outline (click)="openTopicPage(topic,chapter.chapter)">Preview</button>
-                </ion-item>
+                    <!-- <button item-end ion-button outline >Preview</button> -->
+                </button>
             </div>
         </ion-list>
     </ion-item>
