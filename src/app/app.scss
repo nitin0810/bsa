@@ -14,6 +14,23 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+$primary : color($colors,primary);
+$secondary : color($colors,secondary);
+progress {
+    -webkit-appearance: none;
+  }
+  
+  ::-webkit-progress-bar {
+    background-color: white;
+    border:1px solid black;
+    border-radius:20px;
+  }
+  
+  ::-webkit-progress-value {
+    background-color: orange;
+    border-radius:20px;
+  }
+
 .sidebar-header{
     text-align:center;
     .toolbar-background{
@@ -22,6 +39,14 @@
     .highlight{
         background:rgba(0,0,0,0.38);
     }
+}
+div[heading]{
+    padding:10px;
+    font-size:18px;
+    font-weight: bold;
+    background:$primary;
+    color:$secondary;
+    border-bottom:2px solid $secondary;
 }
 .csProfileHeader{
     background: linear-gradient(to bottom, lighten(color($colors,primary),25) 0%, color($colors,white) 100%);
@@ -208,7 +233,6 @@
     .progress{
         margin-top: 10px;
     .bar{
-        margin-bottom: -5px;
         width:60%;
     }    
     } 
