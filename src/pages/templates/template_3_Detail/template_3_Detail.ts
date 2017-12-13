@@ -17,7 +17,8 @@ export class Template_3_Detail {
     questAnsObject: any;
     selectedAnsObj: any = {};
     correctAnswerDescription: any;
-    submitPressed: Array<boolean> = [];
+    submitPressed: Array<boolean> = [];// store wheather each question has been aswered or not
+
 
     constructor(
         private navParams: NavParams,
@@ -62,8 +63,10 @@ export class Template_3_Detail {
             let selectedOptionId = this.selectedAnsObj[question.questionId];
             if (this.questAnsObject[question.questionId][selectedOptionId]) {
                 question.correctOrIncorrect = "CORRECT";
+                question.correctOrIncorrectIcon="assets/icon/right.png";
             } else {
                 question.correctOrIncorrect = "INCORRECT";
+                question.correctOrIncorrectIcon="assets/icon/wrong.png";
             }
         }
 

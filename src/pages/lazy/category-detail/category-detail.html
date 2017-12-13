@@ -11,8 +11,9 @@
                 </ion-list-header>
 
                 <ion-item *ngFor="let course of category?.courses">
+                  
                     <ion-thumbnail item-start>
-                        <img [src]='course.img'>
+                        <img [src]="course.image"/>
                     </ion-thumbnail>
                     <span class="title">{{ course.course }}</span>
                     <ion-badge text-right class="text_small float_right">{{ course.price || 0}}</ion-badge>

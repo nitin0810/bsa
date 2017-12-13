@@ -27,21 +27,21 @@ export class CourseCategoriesPage {
 
   fetchCoursesDetails() {
 
-    if (localStorage.getItem("coursesDetails") !== null) {
-      this.categories = JSON.parse(localStorage.getItem("coursesDetails"));
-      return;
-    }
+    // if (localStorage.getItem("coursesDetails") !== null) {
+    //   this.categories = JSON.parse(localStorage.getItem("coursesDetails"));
+    //   return;
+    // }
     
-    this.customService.showLoader();
-    this.generalService.getMyCoursesPageInfo()
-      .subscribe((res: any) => {
-        this.categories = res;
-        this.generalService.storeCoursesDetails(res);
-        this.customService.hideLoader();
-      }, (err: any) => {
-        this.customService.hideLoader();
-        this.customService.showToast(err.msg);
-      });
+    // this.customService.showLoader();
+    // this.generalService.getMyCoursesPageInfo()
+    //   .subscribe((res: any) => {
+    //     this.categories = res;
+    //     this.generalService.storeCoursesDetails(res);
+    //     this.customService.hideLoader();
+    //   }, (err: any) => {
+    //     this.customService.hideLoader();
+    //     this.customService.showToast(err.msg);
+    //   });
 
   }
 

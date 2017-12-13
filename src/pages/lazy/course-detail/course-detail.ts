@@ -45,14 +45,16 @@ export class CourseDetailPage {
     private navParams: NavParams,
     private generalService:GeneralService
   ) {
+
     this.course = this.navParams.get('course');
+    this.generalService.storeTopicwiseData(this.course);
   }
 
   openTopicPage(topic: any,chapterName:string) {
-    let tempPage:string = this.generalService.getTemplatePageName(topic.pages[0].template);
-    console.log(tempPage);
     
-      this.navCtrl.push(tempPage,{'topicId':topic.topicId,'chapterName':chapterName});//cahpterName is sent to show in the navbar heading
+    let tempPage:string = this.generalService.getTemplatePageName(topic.pages[0].template);
+    
+      this.navCtrl.push(tempPage,{'topicId':topic.topicId});//chapterName is sent to show in the navbar heading
     
   }
 
