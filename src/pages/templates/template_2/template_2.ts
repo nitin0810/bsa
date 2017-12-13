@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, IonicPage, NavParams, ModalController, Navbar } from 'ionic-angular';
+import { NavController, IonicPage, NavParams, ModalController, Navbar,Platform } from 'ionic-angular';
 import { CustomService } from '../../../services/custom.service';
 import { GeneralService } from '../../../services/general.service';
 
@@ -15,9 +15,13 @@ export class Template_2 {
     @ViewChild(Navbar) navBar: Navbar;
     topic: any;
     data: any;
+
+    unregisterBackButtonActionForAndroid:any;
+
     constructor(
         private navParams: NavParams,
         private modalCtrl: ModalController,
+        private platform:Platform,
         private navCtrl: NavController,
         private generalService: GeneralService,
         private customService:CustomService
@@ -41,12 +45,24 @@ export class Template_2 {
 
    
     ionViewDidLoad() {
+
         this.navBar.backButtonClick = (ev: any) => {
-            console.log('asddddddddddddddddddd');
             ev.preventDefault();
             ev.stopPropagation();
             this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
         }
+
+        if (this.platform.is('android')) {
+
+            this.unregisterBackButtonActionForAndroid = this.platform.registerBackButtonAction(() => {
+                this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
+            });
+        }
+    }
+
+    ionViewWillLeave() {
+        // Unregister the custom back button action for this page
+        this.unregisterBackButtonActionForAndroid && this.unregisterBackButtonActionForAndroid();
     }
 
     goToPrevTopic() {

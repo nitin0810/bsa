@@ -71,3 +71,26 @@
 
 
 </ion-content>
+
+<ion-footer no-padding>
+    <ion-toolbar no-padding>
+        <ion-row no-padding>
+            <ion-col col-4 no-padding>
+                <button  ion-button icon-only clear full text-center color="white" (click)="goToPrevTopic()">
+                    <ion-icon name="arrow-dropleft-circle"></ion-icon>Prev
+                </button>
+            </ion-col>
+            <ion-col col-4 no-padding>
+                <button ion-button icon-only clear full text-center color="white" (click)="goToContentPage()">
+                    <ion-icon name="home"></ion-icon>
+                </button>
+            </ion-col>
+            <ion-col col-4 no-padding>
+                <button  ion-button icon-only clear full text-center color="white" (click)="goToNextTopic()">
+                    Next
+                    <ion-icon name="arrow-dropright-circle"></ion-icon>
+                </button>
+            </ion-col>
+        </ion-row>
+    </ion-toolbar>
+</ion-footer>

@@ -42,7 +42,7 @@
                 <p>{{this.correctAnswerDescription[ques.questionId]}}</p>
             </div>
         </ion-slide>
-        <ion-slide>
+        <ion-slide *ngIf="questions">
             <h1>FINISH</h1>
             <h5>You clear/fail the knowledge Test !!</h5>
         </ion-slide>
