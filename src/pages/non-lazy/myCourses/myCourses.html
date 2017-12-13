@@ -46,9 +46,9 @@
 
     <!-- Available Courses -->
     <ion-list class="list-view">
-        <ion-list-header>
+        <div heading>
             Subscribed Courses
-        </ion-list-header>
+        </div>
         <ion-item-sliding *ngFor="let course of subscribedCourses">
             <button ion-item (click)="openCourseDetailPage(course)">
                 <ion-thumbnail item-start>
@@ -57,7 +57,7 @@
                 <span class="title">{{ course.course }} </span>
                 <ion-badge text-right class="text_small float_right" [style.background]="color">Not Started</ion-badge>
                 <div class="progress">
-                    <progress class="bar background16" value ='0' max="100"></progress>
+                    <progress class="bar" value ='0' max="100"></progress>
                     <ion-badge class="text_small float_right">15 days left</ion-badge>
                 </div>
             </button>
