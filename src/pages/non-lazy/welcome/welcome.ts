@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController} from 'ionic-angular';
+import { NavController,MenuController} from 'ionic-angular';
 import { MyCoursesPage } from '../myCourses/myCourses';
 
 
@@ -27,7 +27,12 @@ import { MyCoursesPage } from '../myCourses/myCourses';
 export class WelcomePage {
 
     constructor(
-         public navCtrl: NavController) { }
+         public navCtrl: NavController,
+         private menuCtrl:MenuController
+        ) { 
+            this.menuCtrl.enable(false);
+            
+        }
 
     openRegisterPage() {
         this.navCtrl.push("RegisterPage");

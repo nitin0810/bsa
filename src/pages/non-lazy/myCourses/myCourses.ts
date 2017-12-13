@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MenuController, NavController, ModalController } from 'ionic-angular';
+import { MenuController, NavController } from 'ionic-angular';
 import { GeneralService } from '../../../services/general.service';
 import { CustomService } from '../../../services/custom.service';
 
@@ -17,12 +17,14 @@ export class MyCoursesPage {
 
     constructor(
         private navCtrl: NavController,
+        private menu:MenuController,
         private customService: CustomService,
         private generalService: GeneralService
     ) { }
 
     ngOnInit() {
-
+        this.menu.enable(true);
+        
         this.fetchSubscribedCourses();
         // this.adds = [
         //     { name: 'Basic Life Basic Support', ratingCount: '2230', price: '$150.00', img: 'http://www.globalhealthprofessionals.co.uk/wp-content/uploads/2015/01/Basic-Life-Support-Adult-Paediatric-and-Infant1-637x408.jpg' },

@@ -1,8 +1,9 @@
 import { Component } from '@angular/core';
-import { IonicPage, ViewController, ModalController, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController,MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomService } from '../../../services/custom.service';
 import { AuthService } from '../../../services/auth.service';
+import {  } from 'ionic-angular/components/app/menu-controller';
 
 @IonicPage()
 @Component({
@@ -16,13 +17,15 @@ export class SignInPage {
     pswdInputType: string;
 
     constructor(
-        public formBuilder: FormBuilder,
         private navCtrl: NavController,
-        private modalCtrl: ModalController,
+        private menu:MenuController,
+        // private events:Events,
+        public formBuilder: FormBuilder,
         private customService: CustomService,
         private authService: AuthService
     ) {
-
+        this.menu.enable(false);
+        
     }
 
     ngOnInit() {
@@ -47,12 +50,11 @@ export class SignInPage {
 
 
     public loggedInSuccesfully(res) {
-        
+
         this.authService.saveToken(res.data.access_token);
         this.authService.saveUserDetails(res.data.userDetails);
         this.customService.hideLoader();
         this.navCtrl.push("LoginConfirmedPage");
-
         // this.events.publish('user:login');
         // this.setNotificationToken();
     }

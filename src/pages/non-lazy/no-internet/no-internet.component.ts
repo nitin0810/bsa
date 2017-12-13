@@ -30,6 +30,6 @@ import { MenuController } from 'ionic-angular';
 export class NoInternet {
 
     constructor(public menuCtrl: MenuController) {
-        this.menuCtrl.enable(false);
+        // this.menuCtrl.enable(false);
     }
 }

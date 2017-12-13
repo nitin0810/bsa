@@ -15,16 +15,14 @@ export class AuthService {
     }
 
     isLoggedIn() {
-
         return localStorage.getItem('access_token') ? true : false;
     }
 
     saveToken(token: string) {
-
         localStorage.setItem('access_token', token);
     }
 
-    saveUserDetails(userInfo:any){
-localStorage.setItem('userInfo',userInfo);
+    saveUserDetails(userInfo: any) {
+        localStorage.setItem('userInfo', userInfo);
     }
 }
