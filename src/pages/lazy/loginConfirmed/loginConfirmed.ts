@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController,MenuController } from 'ionic-angular';
 import { MyCoursesPage } from '../../non-lazy/myCourses/myCourses';
 
 @IonicPage()
@@ -20,13 +20,14 @@ export class LoginConfirmedPage {
 
     constructor(
         private nav: NavController,
-        private navParam: NavParams,
-    ) {
+        private menu:MenuController
+    ) {   
+        this.menu.enable(false);
     }
 
     continueAsStudent() {
-        this.nav.setRoot(MyCoursesPage);
 
+        this.nav.setRoot(MyCoursesPage);
     }
 
 

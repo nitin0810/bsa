@@ -49,25 +49,26 @@ export class Template_1 {
 
     }
 
-    // ionViewDidLoad() {
-    //     this.navBar.backButtonClick = (ev: any) => {
-    //         console.log('asddddddddddddddddddd');
-    //         ev.preventDefault();
-    //         ev.stopPropagation();
-    //         this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
-    //     }
-    //     let a = this.platform.platforms();
-    //     alert(JSON.stringify(a));
+    ionViewDidLoad() {
+        this.navBar.backButtonClick = (ev: any) => {
+            console.log('asddddddddddddddddddd');
+            ev.preventDefault();
+            ev.stopPropagation();
+            this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
+        }
+        // let a = this.platform.platforms();
+        // alert(JSON.stringify(a));
 
-    //     if (this.platform.is('android')) {
-    //         console.log('ANDROID');
-    //         this.unregisterBackButtonActionForAndroid = this.platform.registerBackButtonAction(() => {
-    //             this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
+        if (this.platform.is('android')) {
+            console.log('ANDROID');
+            this.unregisterBackButtonActionForAndroid = this.platform.registerBackButtonAction(() => {
+                this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
 
-    //         });
+            });
 
-    //     }
-    // }
+        }
+    }
+
     ionViewWillLeave() {
         // Unregister the custom back button action for this page
         this.unregisterBackButtonActionForAndroid && this.unregisterBackButtonActionForAndroid();

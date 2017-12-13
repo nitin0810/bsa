@@ -16,12 +16,15 @@ import { GeneralService } from '../services/general.service';
 import { CustomHttpService } from '../services/custom-http.service';
 import { CustomService } from '../services/custom.service';
 import { AuthService } from '../services/auth.service';
+import { Network } from '@ionic-native/network';
+import { NoInternet } from '../pages/non-lazy/no-internet/no-internet.component';
 
 @NgModule({
   declarations: [
     MyApp,
     WelcomePage,
-    MyCoursesPage
+    MyCoursesPage,
+    NoInternet
   ],
   imports: [
     BrowserModule,
@@ -32,12 +35,14 @@ import { AuthService } from '../services/auth.service';
   entryComponents: [
     MyApp,
     WelcomePage ,
-    MyCoursesPage
+    MyCoursesPage,
+    NoInternet
   ],
   providers: [
     StatusBar,
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
+    Network,
     NetworkService,
     GeneralService,
     CustomHttpService,

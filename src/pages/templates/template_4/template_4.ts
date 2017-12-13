@@ -75,8 +75,8 @@ export class Template_4 {
             this.submitPressed[i] = false;// description of each question shud remain hidden before pressing submit
         });
 
-        console.log('quesAns obj', this.questAnsObject);
-        console.log('selectedAnsObj', this.selectedAnsObj);
+        // console.log('quesAns obj', this.questAnsObject);
+        // console.log('selectedAnsObj', this.selectedAnsObj);
 
     }
 

@@ -53,8 +53,6 @@ export class Template_3_Detail {
             this.submitPressed[i] = false;// description of each question shud remain hidden before pressing submit
         });
 
-        console.log('quesAns obj', this.questAnsObject);
-        console.log('descr', this.correctAnswerDescription);
     }
 
     checkAnswer(question: any, index: number) {
