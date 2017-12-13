@@ -19,17 +19,27 @@ export class Template_2 {
         private navParams: NavParams,
         private modalCtrl: ModalController,
         private navCtrl: NavController,
-        private generalService: GeneralService
+        private generalService: GeneralService,
+        private customService:CustomService
     ) {
         this.topic = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
-        this.data = this.topic.data;
+        this.getTopicData();
     }
 
-    openModel(buttonData: any) {
-        const modal = this.modalCtrl.create("Template_2_modal", { 'data': { data: buttonData, type: this.data.type } });
-        modal.present();
+    getTopicData() {
+
+        this.customService.showLoader();
+        this.generalService.getTopicData(this.topic.template, this.topic.record)
+            .subscribe((res: any) => {
+                this.data = res.data;
+                this.customService.hideLoader();
+            }, (err: any) => {
+                this.customService.hideLoader();
+                this.customService.showToast(err.msg);
+            });
     }
 
+   
     ionViewDidLoad() {
         this.navBar.backButtonClick = (ev: any) => {
             console.log('asddddddddddddddddddd');
@@ -62,4 +72,10 @@ export class Template_2 {
             this.goToContentPage();
         }
     }
+
+    openModel(buttonData: any) {
+        const modal = this.modalCtrl.create("Template_2_modal", { 'data': { data: buttonData, type: this.data.type } });
+        modal.present();
+    }
+
 }

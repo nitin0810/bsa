@@ -4,6 +4,7 @@ import { CustomService } from '../../../services/custom.service';
 import { GeneralService } from '../../../services/general.service';
 
 
+/**TEMPLATE_4 IS USED FOR FOR QUIZ */
 @IonicPage()
 @Component({
     selector: 'temp_4',
@@ -14,6 +15,7 @@ export class Template_4 {
 
     @ViewChild(Slides) slides: Slides;
     topic: any;
+    questions:Array<any>;
     nextBtnEnabled: boolean = false;
     prevBtnEnabled: boolean = false;
 
@@ -26,15 +28,30 @@ export class Template_4 {
         private navParams: NavParams,
         private viewCtrl: ViewController,
         private navCtrl: NavController,
-        private generalService: GeneralService
+        private generalService: GeneralService,
+        private customService:CustomService
     ) {
         this.topic = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
-        this.setquestAnsObject(this.topic.data.questions);
+        this.getTopicData();
     }
 
     ngAfterViewInit() {
 
         this.slides.lockSwipes(true);
+    }
+
+    getTopicData() {
+
+        this.customService.showLoader();
+        this.generalService.getTopicData(this.topic.template, this.topic.record)
+            .subscribe((res: any) => {
+                this.questions = res.data.questions;
+                this.setquestAnsObject(this.questions);
+                this.customService.hideLoader();
+            }, (err: any) => {
+                this.customService.hideLoader();
+                this.customService.showToast(err.msg);
+            });
     }
 
 
@@ -119,9 +136,10 @@ export class Template_4 {
 
     resetBtnsStatus() {
         let currentIndex = this.slides.getActiveIndex();
-        this.nextBtnEnabled = this.submitPressed[currentIndex] && (currentIndex < this.topic.data.questions.length);
+        this.nextBtnEnabled = this.submitPressed[currentIndex] && (currentIndex < this.questions.length);
         this.prevBtnEnabled = currentIndex != 0;
     }
+    
     goToPrevQuestion() {
         this.slides.lockSwipes(false);
         this.slides.slidePrev();
@@ -131,7 +149,7 @@ export class Template_4 {
     goToNextQuestion() {
         this.slides.lockSwipes(false);
         this.slides.slideNext();
-        this.nextBtnEnabled =false;
+        this.nextBtnEnabled = false;
         this.slides.lockSwipes(true);
 
     }

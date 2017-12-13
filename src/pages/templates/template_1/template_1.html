@@ -6,13 +6,13 @@
 
 <ion-content class="content-gray">
 
-    <ion-list *ngIf="data.heading">
+    <ion-list *ngIf="data?.heading">
         <ion-list-header>
             <b>{{data.heading}}</b>
         </ion-list-header>
     </ion-list>
 
-    <ion-slides *ngIf="data.images && data.images.length!=0" class="top-slides">
+    <ion-slides *ngIf="data?.images && data.images.length!=0" class="top-slides">
         <ion-slide class="slide1-1" *ngFor='let img of data.images'>
             <img [src]='img.url' />
             <div class="slide1-bottom">
@@ -21,17 +21,17 @@
         </ion-slide>
     </ion-slides>
 
-    <div *ngIf="data.bullets && data.bullets.length!=0">
+    <div *ngIf="data?.bullets && data.bullets.length!=0">
         <ion-card>
             <ul>
-                <li *ngFor="let bullet of data.bullets">
+                <li *ngFor="let bullet of data?.bullets">
                     {{ bullet.bullet }}
                 </li>
             </ul>
         </ion-card>
     </div>
 
-    <div *ngIf="data.paragraph && data.paragraph.length!=0">
+    <div *ngIf="data?.paragraph && data.paragraph.length!=0">
         <ion-card *ngFor="let para of data.paragraph">
             <img *ngIf="para.image" [src]="para.image" />
             <h2 *ngIf="para.title">{{para.title}}</h2>

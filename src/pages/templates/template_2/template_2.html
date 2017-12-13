@@ -6,10 +6,10 @@
 
 <ion-content class="content-gray">
 
-        <ion-list-header *ngIf="data.heading" text-center class="paragraph" text-left>{{data.heading}}</ion-list-header>
+        <ion-list-header *ngIf="data?.heading" text-center class="paragraph" text-left>{{data.heading}}</ion-list-header>
     
         <ion-row text-center>
-            <ion-col *ngFor="let button of data.buttons; let i=index" col-6 padding>
+            <ion-col *ngFor="let button of data?.buttons; let i=index" col-6 padding>
                 <!-- 'data.type' can either be "BUTTON" or "IMAGE"  -->
                 <button *ngIf="data.type=='BUTTON'" color="white" large ion-button class="circle-button-exlg" (click)="openModel(button)">
                     <span class="textPrimary">{{button.title}}</span>

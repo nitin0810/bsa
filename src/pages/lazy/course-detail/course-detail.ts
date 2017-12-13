@@ -45,8 +45,9 @@ export class CourseDetailPage {
     private navParams: NavParams,
     private generalService:GeneralService
   ) {
+
     this.course = this.navParams.get('course');
-    
+    this.generalService.storeTopicwiseData(this.course);
   }
 
   openTopicPage(topic: any,chapterName:string) {

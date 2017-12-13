@@ -15,6 +15,7 @@ import { NetworkService } from '../services/network.service';
 import { GeneralService } from '../services/general.service';
 import { CustomHttpService } from '../services/custom-http.service';
 import { CustomService } from '../services/custom.service';
+import { AuthService } from '../services/auth.service';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { CustomService } from '../services/custom.service';
     NetworkService,
     GeneralService,
     CustomHttpService,
-    CustomService
+    CustomService,
+    AuthService
   ]
 })
 export class AppModule {}

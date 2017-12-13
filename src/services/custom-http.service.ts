@@ -20,7 +20,9 @@ export class CustomHttpService {
 
     private addHeaders(optionalHeaders?: HttpHeaders) {
 
-        let requestHeaders = new HttpHeaders().set('Authorization', this.getAccessToken());
+        let requestHeaders = new HttpHeaders()
+            .set('Authorization', this.getAccessToken())
+            .set('Content-Type', 'application/json');
         if (optionalHeaders) {
             for (const header of optionalHeaders.keys()) {
                 requestHeaders = requestHeaders.append(header, optionalHeaders.get(header));
@@ -31,14 +33,27 @@ export class CustomHttpService {
 
 
 
-    get(url: string, options?: HttpHeaders){
+    get(url: string, options?: HttpHeaders) {
 
-        // let headers = this.addHeaders(options);
-        // return this.httpClient.get(BASEURL+url, { headers: headers, observe: 'response' })
-        //     .map(this.extractData)
-        //     .catch(this.handleError);
+        let headers = this.addHeaders(options);
 
-        return this.httpClient.get(BASEURL + url, { observe: 'response' })
+        return this.httpClient.get(BASEURL + url, { headers: headers, observe: 'response' })
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    post(url: string, body: any, options?: HttpHeaders) {
+
+        let headers = this.addHeaders(options);
+
+        return this.httpClient.get(BASEURL + url, { headers: headers, observe: 'response' })
+            .map(this.extractData)
+            .catch(this.handleError);
+    }
+
+    postForLogin(url: string, body: any) {
+
+        return this.httpClient.post(BASEURL + url, body, { observe: 'response' })
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -48,7 +63,7 @@ export class CustomHttpService {
         // console.log('inside extract data', res);
         return res.body || res.status;
     }
-   
+
     private handleError(err: HttpErrorResponse) {
         // console.log('inside handle error', err);
         let errorInfo: any = {};

@@ -17,19 +17,15 @@ import { MyCoursesPage } from '../../non-lazy/myCourses/myCourses';
 })
 
 export class LoginConfirmedPage {
-    myParam: any;
 
     constructor(
         private nav: NavController,
         private navParam: NavParams,
     ) {
-        this.myParam = navParam.get('myParam');
     }
 
     continueAsStudent() {
         this.nav.setRoot(MyCoursesPage);
-
-
 
     }
 

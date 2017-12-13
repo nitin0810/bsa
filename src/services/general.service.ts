@@ -28,9 +28,19 @@ export class GeneralService {
         return this.templatesInfo[serverSideName];
     }
 
-    getMyCoursesPageInfo() {
+    getCourseCategories() {
 
         return this.http.get('/categories');
+    }
+
+    getMyCoursesInfo() {
+
+        return this.http.get('/employee/courses');
+    }
+
+    getTopicData(templateName:string,record:number){
+        return this.http.get(`/employee/template/${templateName}/record/${record}`);
+        
     }
 
     storeCoursesDetails(coursesDetails: Array<any>) {
@@ -38,47 +48,26 @@ export class GeneralService {
         localStorage.setItem('coursesDetails', JSON.stringify(coursesDetails));
     }
 
-    storeTopicwiseData(categories: Array<any>) {
+    storeTopicwiseData(course: any) {
 
         this.topicWiseData = {};
+        
+        course.chapters.forEach((chapter: any) => {
+            chapter.topics.forEach((topic: any, tIndex: number, topics: Array<any>) => {
 
-        // categories.forEach((catg: any) => {
-        //     catg.courses.forEach((course: any) => {
-        //         course.chapters.forEach((chapter: any) => {
-        //             chapter.topics.forEach((topic: any) => {
+                if (topic.pages[0]) {
+                    this.topicWiseData[topic.topicId] = {};
+                    this.topicWiseData[topic.topicId].template = topic.pages[0].template;
+                    this.topicWiseData[topic.topicId].record=  topic.pages[0].record;
+                    this.topicWiseData[topic.topicId].topicId = topic.topicId;
+                    this.topicWiseData[topic.topicId].topicName = topic.topic;
+                    this.topicWiseData[topic.topicId].chapterName = chapter.chapter;
+                    this.topicWiseData[topic.topicId].chapterId = chapter.chapterId;
+                    this.topicWiseData[topic.topicId].prevTopicId = tIndex == 0 ? null : topics[tIndex - 1].topicId;
+                    this.topicWiseData[topic.topicId].nextTopicId = tIndex == (topics.length - 1) ? null : topics[tIndex + 1].topicId;
 
-        //                 topic.pages[0] && (this.topicWiseData[topic.topicId] = topic.pages[0].data);
-        //             });
-        //         });
-        //     });
-
-        // });
-
-
-
-        categories.forEach((catg: any) => {
-            catg.courses.forEach((course: any) => {
-                course.chapters.forEach((chapter: any) => {
-                    chapter.topics.forEach((topic: any, tIndex: number,topics:Array<any>) => {
-
-                        if (topic.pages[0]) {
-                            this.topicWiseData[topic.topicId] = {};
-                            this.topicWiseData[topic.topicId].data=  topic.pages[0].data; // remove this line in future when data comes individually from server
-                            this.topicWiseData[topic.topicId].template=  topic.pages[0].template; 
-                            // this.topicWiseData[topic.topicId].pageId=  topic.pages[0].pageId;
-                            // this.topicWiseData[topic.topicId].record=  topic.pages[0].record;
-                            this.topicWiseData[topic.topicId].topicId = topic.topicId;
-                            this.topicWiseData[topic.topicId].topicName = topic.topic;
-                            this.topicWiseData[topic.topicId].chapterName = chapter.chapter;
-                            this.topicWiseData[topic.topicId].chapterId = chapter.chapterId;
-                            this.topicWiseData[topic.topicId].prevTopicId = tIndex==0? null: topics[tIndex-1].topicId;
-                            this.topicWiseData[topic.topicId].nextTopicId = tIndex==(topics.length-1)? null: topics[tIndex+1].topicId;
-                            
-                        }
-                    });
-                });
+                }
             });
-
         });
 
         console.log(this.topicWiseData);

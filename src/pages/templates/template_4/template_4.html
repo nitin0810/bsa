@@ -7,7 +7,7 @@
 <ion-content padding>
     <!-- TODO:make the slides vertically scrollable -->
     <ion-slides (ionSlideDidChange)="onSlideChange()">
-        <ion-slide *ngFor="let ques of topic.data.questions;let i =index">
+        <ion-slide *ngFor="let ques of questions;let i =index">
             <h5>Question {{i+1}}</h5>
             <h6>{{ques.question}}</h6>
 
