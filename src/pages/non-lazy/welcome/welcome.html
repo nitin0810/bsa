@@ -1,7 +1,9 @@
 <ion-content class="background1">
-        <img class="center-block" src="assets/images/logo.png" width="300px">
-        <div class="slide-container">
         <ion-slides loop autoplay pager>
+          <ion-slide>
+              <img logo class="center-block" src="assets/images/logo.png" width="300px">
+              <h2>Blue Stream Academy</h2>
+          </ion-slide>
           <ion-slide>
             <ion-card>
               <iframe src="https://www.youtube.com/embed/V8VIw0fk4X0" frameborder="0" width="100%" autoplay controls=0></iframe>
@@ -65,7 +67,7 @@
                     <ion-icon name="star-half" color="primary"></ion-icon>
                   </p>
                   <div class="progress">
-                    <progress class="background16" value="22" max="100"></progress>
+                    <progress value="22" max="100"></progress>
                     <p class="text_small">22% Completed</p>
                   </div>
                 </ion-item>
@@ -79,7 +81,7 @@
                     <ion-icon name="star-half" color="primary"></ion-icon>
                   </p>
                   <div class="progress">
-                    <progress class="background16" value="35" max="100"></progress>
+                    <progress value="35" max="100"></progress>
                     <p class="text_small">35% Completed</p>
                   </div>
                 </ion-item>
@@ -94,7 +96,7 @@
                     <ion-icon name="star-half" color="primary"></ion-icon>
                   </p>
                   <div class="progress">
-                    <progress class="background16" value="90" max="100"></progress>
+                    <progress value="90" max="100"></progress>
                     <p class="text_small">90% Completed</p>
                   </div>
                 </ion-item>
@@ -106,11 +108,11 @@
             </div>
           </ion-slide>
       
-          <ion-slide padding>
+          <ion-slide>
             <ion-list>
-              <ion-list-header>
+              <div heading>
                 <span>e-Learning Suit</span>
-              </ion-list-header>
+              </div>
               <ion-row class="textWhite" text-center>
                   <ion-col col-6>
                       <div padding (click)="openAllCoursesPage()">
@@ -160,7 +162,6 @@
 
 
         </ion-slides>
-      </div>
       </ion-content>
       <ion-footer>
           <ion-toolbar color="dark" class="textWhite" no-padding>
