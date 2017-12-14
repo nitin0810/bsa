@@ -1,48 +1,24 @@
 <ion-header>
-    <ion-navbar>
-        <ion-buttons start>
-            <button ion-button (click)="dismiss()">Close</button>
-        </ion-buttons>
-        <ion-title>{{chapterName}}</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-buttons start>
+      <button ion-button (click)="dismiss()">Close</button>
+    </ion-buttons>
+    <ion-title>{{chapterName}}</ion-title>
+  </ion-navbar>
+  <div heading>
+    <div *ngIf="data.type=='BUTTON'" text-center>
+      {{data.data.title}}
+    </div>
+    <div *ngIf="data.type=='IMAGE'">
+      <img [src]="data.data.image" class="center-block">
+    </div>
+  </div>
 </ion-header>
 
-<ion-content class="background15" padding>
-    <div class="center-block">
-        <div *ngIf="data.type=='BUTTON'" large ion-button class="circle-button-exlg center-block textWhite">
-            <span class="textWhite">{{data.data.title}}</span>
-        </div>
-
-        <div *ngIf="data.type=='IMAGE'">
-            <img [src]="data.data.image">
-        </div>
-
-        <div text-center>
-            <h4>{{data.data.description}}</h4>
-        </div>
-    </div>
-
-
+<ion-content class="content-gray">
+  <div class="paper" padding>
+    <p>
+      {{data.data.description}}
+    </p>
+  </div>
 </ion-content>
-
-<!-- <ion-footer color="primary" no-padding>
-    <ion-toolbar no-padding>
-        <ion-row no-padding>
-            <ion-col col-4 no-padding>
-                <button ion-button icon-only clear full text-center color="white" (click)="openLearningOutcome()">
-        <ion-icon name="arrow-dropleft-circle"></ion-icon>
-    </button>
-            </ion-col>
-            <ion-col col-4 no-padding>
-                <button ion-button icon-only clear full text-center color="white" (click)="openConsentPage()">
-        <ion-icon name="home"></ion-icon>
-    </button>
-            </ion-col>
-            <ion-col col-4 no-padding>
-                <button ion-button icon-only clear full text-center color="white" (click)="openButtonInformationPage()">
-            <ion-icon name="arrow-dropright-circle"></ion-icon>
-        </button>
-            </ion-col>
-        </ion-row>
-    </ion-toolbar>
-</ion-footer> -->

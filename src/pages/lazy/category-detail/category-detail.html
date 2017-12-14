@@ -1,32 +1,32 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>Courses</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <ion-title>Courses</ion-title>
+  </ion-navbar>
 </ion-header>
-      
-<ion-content>
-        <ion-list class="list-view">
-                <ion-list-header>
-                    {{category?.category}}
-                </ion-list-header>
 
-                <ion-item *ngFor="let course of category?.courses">
-                  
-                    <ion-thumbnail item-start>
-                        <img [src]="course.image"/>
-                    </ion-thumbnail>
-                    <span class="title">{{ course.course }}</span>
-                    <ion-badge text-right class="text_small float_right">{{ course.price || 0}}</ion-badge>
-                    <div class="rating">
-                        <ion-icon name="star" color="inprogress"></ion-icon>
-                        <ion-icon name="star" color="inprogress"></ion-icon>
-                        <ion-icon name="star" color="inprogress"></ion-icon>
-                        <ion-icon name="star" color="inprogress"></ion-icon>
-                        <ion-icon name="star-half" color="inprogress"></ion-icon>
-                        <ion-badge class="text_small float_right" >{{ course.timeLeft || 0 }} Days</ion-badge>
-                    </div>
-                </ion-item>
-                <!-- <ion-item>
+<ion-content>
+  <ion-list class="list-view">
+    <ion-list-header>
+      {{category?.category}}
+    </ion-list-header>
+
+    <ion-item *ngFor="let course of category?.courses">
+
+      <ion-thumbnail item-start>
+        <img [src]="course.image" />
+      </ion-thumbnail>
+      <span class="title">{{ course.course }}</span>
+      <ion-badge text-right class="text_small float_right">{{ course.price || 0}}</ion-badge>
+      <div class="rating">
+        <ion-icon name="star" color="inprogress"></ion-icon>
+        <ion-icon name="star" color="inprogress"></ion-icon>
+        <ion-icon name="star" color="inprogress"></ion-icon>
+        <ion-icon name="star" color="inprogress"></ion-icon>
+        <ion-icon name="star-half" color="inprogress"></ion-icon>
+        <ion-badge class="text_small float_right">{{ course.timeLeft || 0 }} Days</ion-badge>
+      </div>
+    </ion-item>
+    <!-- <ion-item>
                     <ion-thumbnail item-start>
                         <img src="http://www.localgov.co.uk/Library/images/teaser/fraud1.gif">
                     </ion-thumbnail>
@@ -191,9 +191,8 @@
                             <ion-badge class="text_small float_right">1 Days</ion-badge>
                         </div>
                     </ion-item> -->
-            </ion-list>
-            <div *ngIf="category?.courses.length==0">
-                NO COURSES IN THIS CATEGORY
-            </div>
+  </ion-list>
+  <div *ngIf="category?.courses.length==0">
+    NO COURSES IN THIS CATEGORY
+  </div>
 </ion-content>
-      

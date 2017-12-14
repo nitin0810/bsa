@@ -1,97 +1,49 @@
 <ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle>
-            <ion-icon name="menu"></ion-icon>
-        </button>
-        <ion-title>My Courses</ion-title>
-    </ion-navbar>
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>Subscribed Courses</ion-title>
+  </ion-navbar>
 </ion-header>
-
-<<<<<<< HEAD
-<!--COMMENTED PART IS NOT TO BE SHOWN AS OF NOW-->
-=======
->>>>>>> 1c85a54e8698ea4626eada42e855bc1369fd6565
 <ion-content class="gray_backgorund">
-    <!-- Top Section -->
-    <!-- <ion-slides pager class="top-slides">
-        <ion-slide class="slide1-1" *ngFor='let add of adds' (click)="openBuyCoursePage()">
-            <img [src]='add.img' />
-            <div class="slide1-bottom">
-                {{add.name}}
-                <br>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star-half" color="primary"></ion-icon>
-                <span class="textGray">{{add.ratingCount}}</span>
-                <br>
-                <span class="textPrimary">{{add.price}}</span>
-            </div>
-        </ion-slide>
-    </ion-slides>
-    <!-- /top Section -->
-
-    <!-- Course Categories -->
-    <!-- <ion-list>
-        <ion-list-header>
-            Course Categories
-        </ion-list-header>
-        <div class="horizontal-scroll textWhite card2">
-            <ion-card *ngFor="let category of categories" (click)="openCategoryDetailPage(category.courseCategoryId)">
-                <img [src]='category.img' [alt]="category.category">
-                <div class="slide2-bottom">
-                    {{ category.category }}
-                </div>
-            </ion-card>
-        </div>
-    </ion-list> -->
-    <!-- Course Categories -->
-
-    <!-- Available Courses -->
-    <ion-list class="list-view">
-
-        <ion-item *ngFor="let catg of subscribedCategories">
-            <ion-list>
-                <ion-list-header>
-                    {{catg.category}}
-                </ion-list-header>
-
-                <ion-item-sliding no-lines *ngFor="let course of catg.courses">
-                    <button ion-item (click)="openCourseDetailPage(course)">
-                        <ion-thumbnail item-start>
-                            <img [src]='course.image'>
-                        </ion-thumbnail>
-                        <span class="title">{{ course.course }} </span>
-                        <!--<ion-badge text-right class="text_small float_right" [style.background]="color">Not Started</ion-badge>-->
-                        <div class="progress">
-                            <progress class="bar background16" [value]='course.courseProgress' max="100"></progress>
-                            <span>{{course.courseProgress}}% ({{course.topicViewed}}/{{course.totalTopics}})</span>
-                            <!--<ion-badge class="text_small float_right"></ion-badge>-->
-
-                        </div>
-                    </button>
-                    <ion-item-options side="right">
-                        <button ion-button color="color2">
-                            <ion-icon name="alarm"></ion-icon>
-                            Remind me
-                        </button>
-                        <button ion-button color="color1">
-                            <ion-icon name="help-circle"></ion-icon>
-                            Query
-                        </button>
-                    </ion-item-options>
-                    <ion-item-options side="left">
-                        <button ion-button color="color3">
-                            <ion-icon name="refresh-circle"></ion-icon>
-                            Reset
-                        </button>
-                    </ion-item-options>
-                </ion-item-sliding>
-            </ion-list>
-        </ion-item>
-
-
-    </ion-list>
-    <!-- /available courses -->
+  <!-- Available Courses -->
+  <ion-list class="list-view">
+    <div *ngFor="let catg of subscribedCategories">
+      <div heading>
+        {{catg.category}}
+      </div>
+      <ion-item-sliding no-lines *ngFor="let course of catg.courses">
+        <button ion-item (click)="openCourseDetailPage(course)">
+          <ion-thumbnail item-start>
+            <img [src]='course.image'>
+          </ion-thumbnail>
+          <span class="title">{{ course.course }} </span>
+          <!-- <ion-badge text-right class="text_small float_right" [style.background]="color">Not Started</ion-badge> -->
+          <div class="progress">
+            <progress class="bar" [value]='course.courseProgress' max="100"></progress>
+            <span>{{course.courseProgress}}% ({{course.topicViewed}}/{{course.totalTopics}})</span>
+            <!-- <ion-badge class="text_small float_right">15 days left</ion-badge> -->
+          </div>
+        </button>
+        <ion-item-options side="right">
+          <button ion-button color="color2">
+            <ion-icon name="alarm"></ion-icon>
+            Remind me
+          </button>
+          <button ion-button color="color1">
+            <ion-icon name="help-circle"></ion-icon>
+            Query
+          </button>
+        </ion-item-options>
+        <ion-item-options side="left">
+          <button ion-button color="color3">
+            <ion-icon name="refresh-circle"></ion-icon>
+            Reset
+          </button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </div>
+  </ion-list>
+  <!-- /available courses -->
 </ion-content>

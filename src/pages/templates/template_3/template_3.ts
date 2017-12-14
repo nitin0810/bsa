@@ -9,6 +9,11 @@ import { } from 'ionic-angular/platform/platform';
 @Component({
     selector: 'temp_3',
     templateUrl: './template_3.html',
+    styles:[`
+        p{
+            background:white;
+        }
+    `]
 
 })
 export class Template_3 {
