@@ -1,19 +1,28 @@
 temp_2{
+    div[heading]{
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+        position: sticky;
+        top:0;
+        z-index: 1;
+    }
+
     div[cardButtons]{
-        background:white;
     div[selectionArea]{
-        background-image: url('/assets/images/doctors.png');
+        // background-image: url('/assets/images/doctors.png');
         background-repeat: no-repeat;
         background-position-x: center;
         background-attachment: fixed;
         background-size: cover;
         div[button]{
-            opacity: 0.96;
+            // opacity: 0.96;
             background-size: contain;
-            min-height:100px;
             position: relative;
             background:color($colors,color5);
             transition:0.2s ease-in;
+            // min-height:100px;
+            div[color]{
+                height:100px;
+            }
             div{
                 position: absolute;
                 left: 50%;
@@ -24,17 +33,21 @@ temp_2{
                 opacity: 1;
             }
         }
-        div[image]{
-            display: block;
-            margin:auto;
-            transition:0.2s ease-in;
-        }
-        div[image]:active{
-            border:2px solid white;
-        }
         div[button]:active{
             opacity: 1;
             border:2px solid white;
+        }
+        div[image]{
+            transition:0.2s ease-in;
+            img{
+                display: block;
+                margin:auto;
+                box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+                transition: 0.2s ease-in;
+            }
+            img:hover, img:active{
+                box-shadow: none;
+            }
         }
         div[button]:nth-child(1){
             background:color($colors,color13);
@@ -76,5 +89,8 @@ temp_2{
             }
         }
     }
+}
+.buttonHeight{
+    min-height:100px;
 }
 }
