@@ -1,0 +1,80 @@
+temp_2{
+    div[cardButtons]{
+        background:white;
+    div[selectionArea]{
+        background-image: url('/assets/images/doctors.png');
+        background-repeat: no-repeat;
+        background-position-x: center;
+        background-attachment: fixed;
+        background-size: cover;
+        div[button]{
+            opacity: 0.96;
+            background-size: contain;
+            min-height:100px;
+            position: relative;
+            background:color($colors,color5);
+            transition:0.2s ease-in;
+            div{
+                position: absolute;
+                left: 50%;
+                top:50%;
+                transform: translate(-50%,-50%);
+                font-size:20px;
+                font-weight: bold;
+                opacity: 1;
+            }
+        }
+        div[image]{
+            display: block;
+            margin:auto;
+            transition:0.2s ease-in;
+        }
+        div[image]:active{
+            border:2px solid white;
+        }
+        div[button]:active{
+            opacity: 1;
+            border:2px solid white;
+        }
+        div[button]:nth-child(1){
+            background:color($colors,color13);
+            // background-image: url('/assets/icon/icon1.png');
+            background-repeat: no-repeat;
+            background-size:cover;
+            div{
+                color:$secondary;
+            }
+        }
+        div[button]:nth-child(2){
+            background:color($colors,color5);
+            div{
+                color:$secondary;
+            }
+        }
+        div[button]:nth-child(3){
+            background:color($colors,color16);
+            div{
+                color:$secondary;
+            }
+        }
+        div[button]:nth-child(4){
+            background:color($colors,color9);
+            div{
+                color:$secondary;
+            }
+        }
+        div[button]:nth-child(5){
+            background:color($colors,color13);
+            div{
+                color:$secondary;
+            }
+        }
+        div[button]:nth-child(5){
+            background:color($colors,color19);
+            div{
+                color:$secondary;
+            }
+        }
+    }
+}
+}
