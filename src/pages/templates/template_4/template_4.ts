@@ -43,7 +43,7 @@ export class Template_4 {
     getTopicData() {
 
         this.customService.showLoader();
-        this.generalService.getTopicData(this.topic.template, this.topic.record)
+        this.generalService.getTopicData(this.topic.template, this.topic.record, this.topic.topicId)
             .subscribe((res: any) => {
                 this.questions = res.data.questions;
                 this.setquestAnsObject(this.questions);
