@@ -76,7 +76,7 @@ export class Template_2 {
     }
 
     goToContentPage() {
-        this.navCtrl.popTo(this.navCtrl.getByIndex(0));
+        this.navCtrl.popTo(this.navCtrl.getByIndex(1));
     }
 
     goToNextTopic() {

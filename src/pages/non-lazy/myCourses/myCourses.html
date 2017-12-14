@@ -7,6 +7,7 @@
     </ion-navbar>
 </ion-header>
 
+<!--COMMENTED PART IS NOT TO BE SHOWN AS OF NOW-->
 <ion-content class="gray_backgorund">
     <!-- Top Section -->
     <!-- <ion-slides pager class="top-slides">
@@ -59,10 +60,11 @@
                             <img [src]='course.image'>
                         </ion-thumbnail>
                         <span class="title">{{ course.course }} </span>
-                        <ion-badge text-right class="text_small float_right" [style.background]="color">Not Started</ion-badge>
+                        <!--<ion-badge text-right class="text_small float_right" [style.background]="color">Not Started</ion-badge>-->
                         <div class="progress">
-                            <progress class="bar background16" value='0' max="100"></progress>
-                            <ion-badge class="text_small float_right">15 days left</ion-badge>
+                            <progress class="bar background16" [value]='course.courseProgress' max="100"></progress>
+                            <span>{{course.courseProgress}}% ({{course.topicViewed}}/{{course.totalTopics}})</span>
+                            <!--<ion-badge class="text_small float_right"></ion-badge>-->
                         </div>
                     </button>
                     <ion-item-options side="right">
