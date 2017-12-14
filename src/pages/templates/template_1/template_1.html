@@ -13,8 +13,8 @@
 
   <!-- Images block -->
   <div CardImages *ngIf="data?.images && data.images.length!=0">
-    <ion-card *ngFor='let img of data.images'>
-      <div heading>
+    <ion-card *ngFor='let img of data.images' [ngClass]="{'no-card':data.images.length==1}">
+      <div heading *ngIf="img.title">
         {{img.title}}
       </div>
       <img [src]='img.url'>
@@ -37,7 +37,7 @@
 
   <!-- Block for Image/Paragraph/Title and Description -->
   <div *ngIf="data?.paragraph && data.paragraph.length!=0">
-    <div cardITPL class="paper" *ngFor="let para of data.paragraph">
+    <div cardITPL class="paper" *ngFor="let para of data.paragraph" [ngClass]="{'margin-top':para.image}">
       <img *ngIf="para.image" [src]="para.image">
       <div title *ngIf="para.title">
         {{para.title}}

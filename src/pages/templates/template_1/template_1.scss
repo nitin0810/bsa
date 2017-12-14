@@ -1,6 +1,6 @@
 temp_1 {
   div[cardITPL] {
-    margin: 60px 10px 10px 10px;
+    margin: 10px 10px 10px 10px;
     border-top: 1px solid #d3d3d317;
     img {
       box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
@@ -23,6 +23,7 @@ temp_1 {
     p {
       padding: 10px;
       color: darkslategray;
+      margin:0px;
     }
     div[list] {
       padding: 10px;
@@ -38,6 +39,8 @@ temp_1 {
     div[heading] {
       font-size: 15px;
       font-weight: initial;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+      z-index: 1;
     }
   }
   div[cardList] {
@@ -51,4 +54,12 @@ temp_1 {
       padding: 0 10px;
     }
   }
+}
+.margin-top{
+    margin-top:60px !important;
+}
+.no-card{
+    margin:auto;
+    display: block;
+    box-shadow: none;
 }

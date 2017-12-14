@@ -30,7 +30,7 @@ export class Template_1 {
 
     getTopicData() {
         this.customService.showLoader();
-        this.generalService.getTopicData(this.topic.template, this.topic.record)
+        this.generalService.getTopicData(this.topic.template, this.topic.record, this.topic.topicId)
             .subscribe((res: any) => {
                 this.data = res.data;
                 this.customService.hideLoader();
