@@ -62,7 +62,8 @@ export class Template_3 {
     getTopicData() {
 
         this.customService.showLoader();
-        this.generalService.getTopicData(this.topic.template, this.topic.record, this.topic.topicId)
+
+        this.generalService.getTopicData(this.topic.template, this.topic.record,this.topic.topicId)
             .subscribe((res: any) => {
 
                 this.data = res.data;

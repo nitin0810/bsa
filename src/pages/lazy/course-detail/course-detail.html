@@ -18,7 +18,7 @@
     <br>
     <div class="progress">
       <progress value="0" max="100"></progress>
-      <ion-badge class="text_small">0%</ion-badge>
+      <ion-badge class="text_small">{{course.courseProgress}}%</ion-badge>
     </div>
   </ion-toolbar>
 </ion-header>
@@ -39,7 +39,7 @@
     <div text-center>
       <b>Content</b>
       <br>
-      <span class="text_small textGray">(21 topics, 29 hours of content)</span>
+      <span class="text_small textGray">({{course.totalTopics}} topics)</span>
     </div>
     <ion-list>
       <div *ngFor="let chapter of course?.chapters">

@@ -15,7 +15,7 @@ export class Template_4 {
 
     @ViewChild(Slides) slides: Slides;
     topic: any;
-    questions:Array<any>;
+    questions: Array<any>;
     nextBtnEnabled: boolean = false;
     prevBtnEnabled: boolean = false;
 
@@ -29,7 +29,7 @@ export class Template_4 {
         private viewCtrl: ViewController,
         private navCtrl: NavController,
         private generalService: GeneralService,
-        private customService:CustomService
+        private customService: CustomService
     ) {
         this.topic = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
         this.getTopicData();
@@ -139,7 +139,7 @@ export class Template_4 {
         this.nextBtnEnabled = this.submitPressed[currentIndex] && (currentIndex < this.questions.length);
         this.prevBtnEnabled = currentIndex != 0;
     }
-    
+
     goToPrevQuestion() {
         this.slides.lockSwipes(false);
         this.slides.slidePrev();

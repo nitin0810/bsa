@@ -33,7 +33,7 @@ export class Template_2 {
     getTopicData() {
 
         this.customService.showLoader();
-        this.generalService.getTopicData(this.topic.template, this.topic.record, this.topic.topicId)
+        this.generalService.getTopicData(this.topic.template, this.topic.record,this.topic.topicId)
             .subscribe((res: any) => {
                 this.data = res.data;
                 this.customService.hideLoader();
@@ -76,7 +76,8 @@ export class Template_2 {
     }
 
     goToContentPage() {
-        this.navCtrl.popTo(this.navCtrl.getByIndex(0));
+        
+        this.navCtrl.popTo(this.navCtrl.getByIndex(1));
     }
 
     goToNextTopic() {

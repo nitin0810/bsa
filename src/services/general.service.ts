@@ -38,9 +38,9 @@ export class GeneralService {
         return this.http.get('/employee/courses');
     }
 
-    getTopicData(templateName:string,record:number, topicId:number){
-        return this.http.get(`/employee/topic/${topicId}/template/${templateName}/record/${record}`);
+    getTopicData(templateName:string,record:number,topicId:number){
         
+        return this.http.get(`/employee/topic/${topicId}/template/${templateName}/record/${record}`);
     }
 
     storeCoursesDetails(coursesDetails: Array<any>) {
