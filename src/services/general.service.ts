@@ -39,8 +39,8 @@ export class GeneralService {
     }
 
     getTopicData(templateName:string,record:number,topicId:number){
-        return this.http.get(`/employee/topic/${topicId}/template/${templateName}/record/${record}`);
         
+        return this.http.get(`/employee/topic/${topicId}/template/${templateName}/record/${record}`);
     }
 
     storeCoursesDetails(coursesDetails: Array<any>) {

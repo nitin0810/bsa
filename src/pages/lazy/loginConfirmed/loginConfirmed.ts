@@ -4,6 +4,7 @@ import { MyCoursesPage } from '../../non-lazy/myCourses/myCourses';
 import { WelcomePage } from '../../non-lazy/welcome/welcome';
 
 
+
 @IonicPage()
 @Component({
     selector: 'loginConfirm',
@@ -20,6 +21,7 @@ import { WelcomePage } from '../../non-lazy/welcome/welcome';
 
 export class LoginConfirmedPage {
 
+
     unregisterBackButtonActionForAndroid: any;
 
     constructor(
@@ -28,6 +30,7 @@ export class LoginConfirmedPage {
         private alertCtrl: AlertController,
         private platform: Platform
     ) {
+
         this.menu.enable(false);
     }
 

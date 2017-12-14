@@ -76,6 +76,7 @@ export class Template_2 {
     }
 
     goToContentPage() {
+        
         this.navCtrl.popTo(this.navCtrl.getByIndex(1));
     }
 
