@@ -1,0 +1,26 @@
+<ion-menu [content]="content">
+
+    <ion-header class="csProfileHeader">
+        <div class="csAccBgImg csHeight160">
+        <div class="center-block csProfileHeader">
+          <div class="csAccBgImg">
+            <br><img src="assets/images/pic.png" class="csAccImg center-block" margin-top>
+            <div class="csAccName textWhite" text-center>Asrar Rashid</div>
+          </div>
+        </div>
+        </div>
+      </ion-header>
+  
+    <ion-content class="sidebar-background">
+      <ion-list>
+        <button class="csStrip" menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">
+          <img [src]="p.icon" item-left height="25px" width="25px">
+          {{p.title}}
+        </button>
+      </ion-list>
+    </ion-content>
+  
+  </ion-menu>
+
+<!-- Disable swipe-to-go-back because it's poor UX to combine STGB(swipe to go back) with side menus -->
+<ion-nav  [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>

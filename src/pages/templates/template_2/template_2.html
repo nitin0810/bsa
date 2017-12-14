@@ -1,0 +1,43 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>{{topic.chapterName}}</ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content class="content-gray">
+
+        <ion-list-header *ngIf="data?.heading" text-center class="paragraph" text-left>{{data.heading}}</ion-list-header>
+    
+        <ion-row text-center>
+            <ion-col *ngFor="let button of data?.buttons; let i=index" col-6 padding>
+                <!-- 'data.type' can either be "BUTTON" or "IMAGE"  -->
+                <button *ngIf="data.type=='BUTTON'" color="white" large ion-button class="circle-button-exlg" (click)="openModel(button)">
+                    <span class="textPrimary">{{button.title}}</span>
+                </button>
+                <img *ngIf="data.type=='IMAGE'" [src]="button.image" (tap)="openModel(button)">
+            </ion-col>
+        </ion-row>
+    </ion-content>
+
+    <ion-footer no-padding>
+        <ion-toolbar no-padding>
+            <ion-row no-padding>
+                <ion-col col-4 no-padding>
+                    <button  ion-button icon-only clear full text-center color="white" (click)="goToPrevTopic()">
+                        <ion-icon name="arrow-dropleft-circle"></ion-icon>Prev
+                    </button>
+                </ion-col>
+                <ion-col col-4 no-padding>
+                    <button ion-button icon-only clear full text-center color="white" (click)="goToContentPage()">
+                        <ion-icon name="home"></ion-icon>
+                    </button>
+                </ion-col>
+                <ion-col col-4 no-padding>
+                    <button  ion-button icon-only clear full text-center color="white" (click)="goToNextTopic()">
+                        Next
+                        <ion-icon name="arrow-dropright-circle"></ion-icon>
+                    </button>
+                </ion-col>
+            </ion-row>
+        </ion-toolbar>
+    </ion-footer>
