@@ -4,64 +4,64 @@
     </ion-navbar>
 </ion-header>
 
-<ion-content padding>
+<ion-content class="background-gray">
 
-    <div *ngIf="data?.background">
-        <h3>Background</h3>
-        <p>{{data.background}}</p>
+    <div class="paper" *ngIf="data?.background">
+        <div heading>Background</div>
+        <p padding>{{data.background}}</p>
     </div>
-    <div *ngIf="data?.issue">
-        <h4>Issue</h4>
-        <p>{{data.issue}}</p>
+
+    <div class="paper" *ngIf="data?.issue">
+        <div heading>Issue</div>
+        <p padding>{{data.issue}}</p>
     </div>
-    <div *ngIf="data?.incident">
-        <h4>Incident</h4>
-        <p>{{data.incident}}</p>
+
+    <div class="paper" *ngIf="data?.incident">
+        <div heading>Incident</div>
+        <p padding>{{data.incident}}</p>
     </div>
-    <div *ngIf="data?.decision">
-        <h4>Decision</h4>
-        <p>{{data.decision}}</p>
+
+    <div class="paper" *ngIf="data?.decision">
+        <div heading>Decision</div>
+        <p padding>{{data.decision}}</p>
     </div>
-    <div *ngIf="data?.conclusion">
-        <h4>Conclusion</h4>
-        <p>{{data.conclusion}}</p>
+
+    <div class="paper" *ngIf="data?.conclusion">
+        <div heading>Conclusion</div>
+        <p padding>{{data.conclusion}}</p>
     </div>
 
     <div *ngIf="data?.questionnaire && data.questionnaire.length!=0">
         <div *ngFor="let quesSet of data.questionnaire">
-            <h3 *ngIf="quesSet.heading">{{quesSet.heading}}</h3>
-            <div *ngFor="let ques of quesSet.questions; let i =index">
+            <div heading text-center *ngIf="quesSet.heading">{{quesSet.heading}}</div>
+            <div *ngFor="let ques of quesSet.questions; let i =index" padding>
                 <h5>{{ques.question}}</h5>
 
                 <div *ngIf="ques.type=='SINGLECHOICE'">
-                    Select Single
-                    <br>
-                    <ion-list radio-group [(ngModel)]="selectedAnsObj[ques.questionId]">
-                        <ion-item *ngFor="let option of ques.options">
-                            <ion-label>{{option.option}}</ion-label>
-                            <ion-radio [value]="option.optionsId" [disabled]="submitPressed[i]"></ion-radio>
-                        </ion-item>
-                    </ion-list>
-                    <button ion-button [disabled]="!selectedAnsObj[ques.questionId]" (click)="checkAnswer(ques,i)">Submit</button>
-
+                    <ion-row radio-group [(ngModel)]="selectedAnsObj[ques.questionId]">
+                        <ion-col col-6 no-padding *ngFor="let option of ques.options">
+                            <ion-item >
+                                <ion-label>{{option.option}}</ion-label>
+                                <ion-radio [value]="option.optionsId" [disabled]="submitPressed[i]"></ion-radio>
+                            </ion-item>
+                        </ion-col>
+                    </ion-row>
+                    <button ion-button full [disabled]="!selectedAnsObj[ques.questionId]" (click)="checkAnswer(ques,i)">Submit</button>
                 </div>
 
                 <div *ngIf="ques.type=='MULTIPLECHOICE'">
-                    Select Multiple
-                    <br>
                     <ion-list>
                         <ion-item *ngFor="let option of ques.options">
                             <ion-label>{{option.option}}</ion-label>
                             <ion-checkbox [(ngModel)]="selectedAnsObj[ques.questionId][option.optionsId]" [disabled]="submitPressed[i]"></ion-checkbox>
                         </ion-item>
                     </ion-list>
-                    <button ion-button [disabled]="!(selectedAnsObj[ques.questionId].keys().length!=0)" (click)="checkAnswer(ques,i)">Submit</button>
-
+                    <button ion-button full [disabled]="!(selectedAnsObj[ques.questionId].keys().length!=0)" (click)="checkAnswer(ques,i)">Submit</button>
                 </div>
-                <div *ngIf="submitPressed[i]">
-                    <img [src]="ques.correctOrIncorrectIcon" style="width:50px">
-                    <h4>{{ques.correctOrIncorrect}}</h4>
-                    <p >{{this.correctAnswerDescription[ques.questionId]}}</p>
+                <div *ngIf="submitPressed[i]" [ngClass]="{'inCorrectBox': ques.correctOrIncorrect=='INCORRECT', 'correctBox': ques.correctOrIncorrect=='CORRECT'}">
+                    <!-- <img [src]="ques.correctOrIncorrectIcon" style="width:50px" class="center-block"> -->
+                    <div ans>{{ques.correctOrIncorrect}}</div>
+                    <div>{{this.correctAnswerDescription[ques.questionId]}}</div>
                 </div>
             </div>
         </div>
