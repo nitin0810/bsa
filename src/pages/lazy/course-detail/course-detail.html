@@ -1,125 +1,125 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>Course</ion-title>
-    </ion-navbar>
-    <ion-toolbar class="header-toolbar" class="back-color1" padding>
-        <div class="title textWhite">
-            <b>{{course?.course}}</b>
-        </div>
-        <!-- <br> -->
-        <!-- static for now -->
-        <ion-icon name="star" color="white"></ion-icon>
-        <ion-icon name="star" color="white"></ion-icon>
-        <ion-icon name="star" color="white"></ion-icon>
-        <ion-icon name="star" color="white"></ion-icon>
-        <ion-icon name="star-half" color="white"></ion-icon>
-        <span class="textWhite text_small">(2298)</span>
-        <br><br>
-        <div class="progress">
-            <progress value="0" max="100"></progress>
-            <ion-badge class="text_small">0%</ion-badge>
-        </div>
-    </ion-toolbar>
+  <ion-navbar>
+    <ion-title>Course Overview</ion-title>
+  </ion-navbar>
+  <ion-toolbar class="header-toolbar" class="back-color1" padding>
+    <div class="title textWhite">
+      <b>{{course?.course}}</b>
+    </div>
+    <!-- <br> -->
+    <!-- static for now -->
+    <ion-icon name="star" color="white"></ion-icon>
+    <ion-icon name="star" color="white"></ion-icon>
+    <ion-icon name="star" color="white"></ion-icon>
+    <ion-icon name="star" color="white"></ion-icon>
+    <ion-icon name="star-half" color="white"></ion-icon>
+    <span class="textWhite text_small">(2298)</span>
+    <br>
+    <br>
+    <div class="progress">
+      <progress value="0" max="100"></progress>
+      <ion-badge class="text_small">0%</ion-badge>
+    </div>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content style="background:lightgray">
 
-    <ion-item margin-top *ngIf="course?.description">
-        <div text-center>
-            <b>Description</b>
-        </div>
-        <p class="paragraph" margin-bottom>
-            {{course?.description}}
+  <ion-item margin-top *ngIf="course?.description">
+    <div text-center>
+      <b>Description</b>
+    </div>
+    <p class="paragraph" margin-bottom>
+      {{course?.description}}
+    </p>
+    <!-- <button ion-button class="center-block" (click)="openIntroductionPage()">View More</button> -->
+  </ion-item>
+
+  <ion-item margin-top no-padding>
+    <div text-center>
+      <b>Content</b>
+      <br>
+      <span class="text_small textGray">(21 topics, 29 hours of content)</span>
+    </div>
+    <ion-list>
+      <div *ngFor="let chapter of course?.chapters">
+        <ion-list-header no-lines>
+          {{chapter.chapter}}
+        </ion-list-header>
+        <button ion-item detail-none no-line-top *ngFor="let topic of chapter.topics; let i =index" (click)="openTopicPage(topic,chapter.chapter)">
+          <div class="circle-text" item-left>
+            {{i+1}}
+          </div>
+          <div>{{topic.topic}}</div>
+          <!-- <button item-end ion-button outline >Preview</button> -->
+        </button>
+      </div>
+    </ion-list>
+  </ion-item>
+
+  <ion-item margin-top no-padding>
+    <div text-center>
+      <b>Reviews</b>
+      <br>
+      <ion-row>
+        <ion-col text-right>
+          <span class="text_exlg textGray">4.7</span>
+        </ion-col>
+        <ion-col text-left>
+          <span class="text_small textGray">
+            <ion-icon name="star" color="primary"></ion-icon>
+            <ion-icon name="star" color="primary"></ion-icon>
+            <ion-icon name="star" color="primary"></ion-icon>
+            <ion-icon name="star" color="primary"></ion-icon>
+            <ion-icon name="star-half" color="primary"></ion-icon>
+          </span>
+          <br>
+          <span class="text_small textGray">269 Reviews</span>
+        </ion-col>
+      </ion-row>
+    </div>
+    <ion-list>
+      <ion-item>
+        <ion-icon name="star" color="primary"></ion-icon>
+        <ion-icon name="star" color="primary"></ion-icon>
+        <ion-icon name="star" color="primary"></ion-icon>
+        <ion-icon name="star" color="primary"></ion-icon>
+        <ion-icon name="star-half" color="primary"></ion-icon>
+        <br>
+        <p>
+          <b>Cynthia Clark</b>
+          <span class="text_small">(Today 02:00 PM)</span>
+          <br>
+          <span class="paragraph">Tons of lessions in this lorem ipsum Tons of lessions in this lorem ipsum</span>
         </p>
-        <!-- <button ion-button class="center-block" (click)="openIntroductionPage()">View More</button> -->
-    </ion-item>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="star" color="primary"></ion-icon>
+        <ion-icon name="star" color="primary"></ion-icon>
+        <ion-icon name="star-half" color="primary"></ion-icon>
+        <br>
+        <p>
+          <b>Ajima Ahem</b>
+          <span class="text_small">(Today 02:10 PM)</span>
+          <br>
+          <span class="paragraph">Tons of lessions in this lorem ipsum Tons of lessions in this lorem ipsum</span>
+        </p>
+      </ion-item>
+      <ion-item>
+        <ion-icon name="star" color="primary"></ion-icon>
+        <ion-icon name="star" color="primary"></ion-icon>
+        <ion-icon name="star" color="primary"></ion-icon>
+        <ion-icon name="star-half" color="primary"></ion-icon>
+        <br>
+        <p>
+          <b>Abnex Trump</b>
+          <span class="text_small">(Today 1:02 PM)</span>
+          <br>
+          <span class="paragraph">Tons of lessions in this lorem ipsum Tons of lessions in this lorem ipsum</span>
+        </p>
+      </ion-item>
+    </ion-list>
+    <!-- <button ion-button class="center-block">View More</button> -->
+  </ion-item>
 
-    <ion-item margin-top no-padding>
-        <div text-center>
-            Content
-            <br>
-            <span class="text_small textGray">(21 topics, 29 hours of content)</span>
-        </div>
-        <ion-list>
-
-            <div *ngFor="let chapter of course?.chapters">
-                <ion-list-header no-lines>
-                    {{chapter.chapter}}
-                </ion-list-header>
-                <button ion-item detail-none no-line-top *ngFor="let topic of chapter.topics; let i =index" (click)="openTopicPage(topic,chapter.chapter)">
-                    <div class="circle-text" item-left>
-                        {{i+1}}
-                    </div>
-                    <div>{{topic.topic}}</div>
-                    <!-- <button item-end ion-button outline >Preview</button> -->
-                </button>
-            </div>
-        </ion-list>
-    </ion-item>
-
-    <ion-item margin-top no-padding>
-        <div text-center>
-            <b>Reviews</b>
-            <br>
-            <ion-row>
-                <ion-col text-right>
-                    <span class="text_exlg textGray">4.7</span>
-                </ion-col>
-                <ion-col text-left>
-                    <span class="text_small textGray">
-                        <ion-icon name="star" color="primary"></ion-icon>
-                        <ion-icon name="star" color="primary"></ion-icon>
-                        <ion-icon name="star" color="primary"></ion-icon>
-                        <ion-icon name="star" color="primary"></ion-icon>
-                        <ion-icon name="star-half" color="primary"></ion-icon>
-                    </span>
-                    <br>
-                    <span class="text_small textGray">269 Reviews</span>
-                </ion-col>
-            </ion-row>
-        </div>
-        <ion-list>
-            <ion-item>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star-half" color="primary"></ion-icon>
-                <br>
-                <p>
-                    <b>Cynthia Clark</b>
-                    <span class="text_small">(Today 02:00 PM)</span>
-                    <br>
-                    <span class="paragraph">Tons of lessions in this lorem ipsum Tons of lessions in this lorem ipsum</span>
-                </p>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star-half" color="primary"></ion-icon>
-                <br>
-                <p>
-                    <b>Ajima Ahem</b>
-                    <span class="text_small">(Today 02:10 PM)</span>
-                    <br>
-                    <span class="paragraph">Tons of lessions in this lorem ipsum Tons of lessions in this lorem ipsum</span>
-                </p>
-            </ion-item>
-            <ion-item>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star" color="primary"></ion-icon>
-                <ion-icon name="star-half" color="primary"></ion-icon>
-                <br>
-                <p>
-                    <b>Abnex Trump</b>
-                    <span class="text_small">(Today 1:02 PM)</span>
-                    <br>
-                    <span class="paragraph">Tons of lessions in this lorem ipsum Tons of lessions in this lorem ipsum</span>
-                </p>
-            </ion-item>
-        </ion-list>
-        <!-- <button ion-button class="center-block">View More</button> -->
-    </ion-item>
- 
 </ion-content>
