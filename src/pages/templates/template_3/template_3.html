@@ -7,31 +7,31 @@
 <ion-content class="background-gray">
   <div class="paper" *ngIf="data?.background">
     <div heading>Background</div>
-    <img *ngIf="data.backgroundImageUrl" [src]="data.backgroundImageUrl">
+    <img *ngIf="data.backgroundImageUrl" [src]="data.backgroundImageUrl"  class="center-block animated fadeInDown">
     <p padding>{{data.background}}</p>
   </div>
 
   <div class="paper" *ngIf="data?.issue">
     <div heading>Issue</div>
-    <img *ngIf="data.issueImageUrl" [src]="data.issueImageUrl">
+    <img *ngIf="data.issueImageUrl" [src]="data.issueImageUrl" class="center-block animated fadeInDown">
     <p padding>{{data.issue}}</p>
   </div>
 
   <div class="paper" *ngIf="data?.incident">
     <div heading>Incident</div>
-    <img *ngIf="data.incidentImageUrl" [src]="data.incidentImageUrl">
+    <img *ngIf="data.incidentImageUrl" [src]="data.incidentImageUrl"  class="center-block animated fadeInDown">
     <p padding>{{data.incident}}</p>
   </div>
 
   <div class="paper" *ngIf="data?.decision">
     <div heading>Decision</div>
-    <img *ngIf="data.decisionImageUrl" [src]="data.decisionImageUrl">
+    <img *ngIf="data.decisionImageUrl" [src]="data.decisionImageUrl"  class="center-block animated fadeInDown">
     <p padding>{{data.decision}}</p>
   </div>
 
   <div class="paper" *ngIf="data?.conclusion">
     <div heading>Conclusion</div>
-    <img *ngIf="data.conclusionImageUrl" [src]="data.conclusionImageUrl">
+    <img *ngIf="data.conclusionImageUrl" [src]="data.conclusionImageUrl"  class="center-block animated fadeInDown">
     <p padding>{{data.conclusion}}</p>
   </div>
 
@@ -63,7 +63,7 @@
           <button ion-button full [disabled]="!(selectedAnsObj[ques.questionId].keys().length!=0)" (click)="checkAnswer(ques,i)">Submit</button>
         </div>
         <div *ngIf="submitPressed[i]" class="animated bounceInDown" [ngClass]="{'inCorrectBox': ques.correctOrIncorrect=='INCORRECT', 'correctBox': ques.correctOrIncorrect=='CORRECT'}">
-          <!-- <img [src]="ques.correctOrIncorrectIcon" style="width:50px" class="center-block"> -->
+          <!-- <img [src]="ques.correctOrIncorrectIcon" style="width:50px" class="center-block animated fadeInDown"> -->
           <div ans>{{ques.correctOrIncorrect}}</div>
           <div>{{this.correctAnswerDescription[ques.questionId]}}</div>
         </div>
