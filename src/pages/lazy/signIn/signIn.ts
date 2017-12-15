@@ -8,7 +8,8 @@ import {  } from 'ionic-angular/components/app/menu-controller';
 @IonicPage()
 @Component({
     selector: 'signIn',
-    templateUrl: 'signIn.html'
+    templateUrl: 'signIn.html',
+    styles:[`h3{color:#2296f3}`]
 })
 export class SignInPage {
 
@@ -31,8 +32,8 @@ export class SignInPage {
     ngOnInit() {
 
         this.loginForm = this.formBuilder.group({
-            username: ['heather.elwiss@gmail.com', Validators.required],
-            password: ['123456', Validators.required]
+            username: ['', Validators.required],
+            password: ['', Validators.required]
         });
     }
 

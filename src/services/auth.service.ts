@@ -23,6 +23,6 @@ export class AuthService {
     }
 
     saveUserDetails(userInfo: any) {
-        localStorage.setItem('userInfo', userInfo);
+        localStorage.setItem('userInfo', JSON.stringify(userInfo));
     }
 }
