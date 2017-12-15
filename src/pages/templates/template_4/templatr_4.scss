@@ -1,0 +1,43 @@
+temp_4{
+    ion-slides{
+        .swiper-container{
+            height:initial !important;
+            overflow-y:scroll;
+        }
+        .slide-zoom{
+            text-align: initial !important;
+        }
+        .paper{
+            margin: 10px;
+            p{
+                padding:10px;
+                font-size: 16px;
+                margin:0px;
+                background:$primary;
+                color:$secondary;
+            }
+            ion-list{
+                margin: 0;
+            }
+            ion-button{
+                @extend .center-block;
+            }
+            .btn_block{
+                padding:0px !important;
+            }
+            ion-item{
+                font-size: 15px;
+            }
+        }
+        .pass{
+            text-align: center;
+            color: #219517;
+            font-weight:bold;
+        }
+        .fail{
+            text-align: center;
+            color: #d01815;
+            font-weight:bold;
+        }
+    }
+}

@@ -63,7 +63,7 @@
           </ion-list>
           <button ion-button full [disabled]="!(selectedAnsObj[ques.questionId].keys().length!=0)" (click)="checkAnswer(ques,i)">Submit</button>
         </div>
-        <div *ngIf="submitPressed[i]" [ngClass]="{'inCorrectBox': ques.correctOrIncorrect=='INCORRECT', 'correctBox': ques.correctOrIncorrect=='CORRECT'}">
+        <div *ngIf="submitPressed[i]" class="animated bounceInDown" [ngClass]="{'inCorrectBox': ques.correctOrIncorrect=='INCORRECT', 'correctBox': ques.correctOrIncorrect=='CORRECT'}">
           <!-- <img [src]="ques.correctOrIncorrectIcon" style="width:50px" class="center-block"> -->
           <div ans>{{ques.correctOrIncorrect}}</div>
           <div>{{this.correctAnswerDescription[ques.questionId]}}</div>
