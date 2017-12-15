@@ -54,6 +54,7 @@ export class CourseDetailPage {
 
   openTopicPage(topic: any, chapter: any) {
 
+    if (!(topic.pages && topic.pages.length != 0)) { return; } // to be removed in future when all chapters' data is available
     let tempPage: string = this.generalService.getTemplatePageName(topic.pages[0].template);
     this.selectedChapter = chapter;
     this.navCtrl.push(tempPage, { 'topicId': topic.topicId });
