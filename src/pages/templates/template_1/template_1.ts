@@ -2,7 +2,8 @@ import { Component, ViewChild } from '@angular/core';
 import { NavController, IonicPage, NavParams, Navbar } from 'ionic-angular';
 import { CustomService } from '../../../services/custom.service';
 import { GeneralService } from '../../../services/general.service';
-import { Platform } from 'ionic-angular/platform/platform';
+import { BackBtnService } from '../../../services/backBtn.service';
+
 
 
 @IonicPage()
@@ -19,9 +20,9 @@ export class Template_1 {
     data: any;
     constructor(
         private navParams: NavParams,
-        private platform: Platform,
         private navCtrl: NavController,
         private generalService: GeneralService,
+        private backBtnService: BackBtnService,
         private customService: CustomService
     ) {
         this.topic = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
@@ -29,10 +30,12 @@ export class Template_1 {
     }
 
     getTopicData() {
+
         this.customService.showLoader();
-        this.generalService.getTopicData(this.topic.template, this.topic.record,this.topic.topicId)
+        this.generalService.getTopicData(this.topic.template, this.topic.record, this.topic.topicId)
             .subscribe((res: any) => {
                 this.data = res.data;
+                this.updateCourseProgress();
                 this.customService.hideLoader();
             }, (err: any) => {
                 this.customService.hideLoader();
@@ -42,30 +45,27 @@ export class Template_1 {
 
     }
 
+    /**for showing the upated progress on course-detail page */
+    updateCourseProgress() {
+
+        if (!this.topic.read) {
+            this.generalService.updateTopicReadStatus(this.topic.topicId);
+            this.generalService.updateCourseProgressById(this.topic.courseId);
+        }
+    }
+
+
+    /**COPY THESE IONVIEWDIDLOAD AND IONVIEWWILLENTER CALBACKS IN EACH TEMPLATE 
+     * WHERE DEFAULT BEHAVIOUR OF NAVBAR BACK BTN IS TO BE OVERRIDEN */
     ionViewDidLoad() {
-        this.navBar.backButtonClick = (ev: any) => {
-            console.log('asddddddddddddddddddd');
-            ev.preventDefault();
-            ev.stopPropagation();
-            this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
-        }
-        // let a = this.platform.platforms();
-        // alert(JSON.stringify(a));
-
-        if (this.platform.is('android')) {
-            console.log('ANDROID');
-            this.unregisterBackButtonActionForAndroid = this.platform.registerBackButtonAction(() => {
-                this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
-
-            });
-
-        }
+        this.backBtnService.overrideBackBtnFunctionality(this);
     }
 
     ionViewWillLeave() {
         // Unregister the custom back button action for this page
         this.unregisterBackButtonActionForAndroid && this.unregisterBackButtonActionForAndroid();
     }
+
 
     goToPrevTopic() {
         if (this.topic.prevTopicId) {

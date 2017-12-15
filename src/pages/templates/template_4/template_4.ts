@@ -47,11 +47,22 @@ export class Template_4 {
             .subscribe((res: any) => {
                 this.questions = res.data.questions;
                 this.setquestAnsObject(this.questions);
+                this.updateCourseProgress();
                 this.customService.hideLoader();
             }, (err: any) => {
                 this.customService.hideLoader();
                 this.customService.showToast(err.msg);
             });
+    }
+
+
+    /**for showing the upated progress on course-detail page */
+    updateCourseProgress() {
+
+        if (!this.topic.read) {
+            this.generalService.updateTopicReadStatus(this.topic.topicId);
+            this.generalService.updateCourseProgressById(this.topic.courseId);
+        }
     }
 
 

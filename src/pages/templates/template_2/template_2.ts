@@ -1,7 +1,8 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, IonicPage, NavParams, ModalController, Navbar,Platform } from 'ionic-angular';
+import { NavController, IonicPage, NavParams, ModalController, Navbar } from 'ionic-angular';
 import { CustomService } from '../../../services/custom.service';
 import { GeneralService } from '../../../services/general.service';
+import { BackBtnService } from '../../../services/backBtn.service';
 
 
 @IonicPage()
@@ -21,9 +22,9 @@ export class Template_2 {
     constructor(
         private navParams: NavParams,
         private modalCtrl: ModalController,
-        private platform:Platform,
         private navCtrl: NavController,
         private generalService: GeneralService,
+                private backBtnService: BackBtnService,
         private customService:CustomService
     ) {
         this.topic = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
@@ -36,6 +37,7 @@ export class Template_2 {
         this.generalService.getTopicData(this.topic.template, this.topic.record,this.topic.topicId)
             .subscribe((res: any) => {
                 this.data = res.data;
+                this.updateCourseProgress();
                 this.customService.hideLoader();
             }, (err: any) => {
                 this.customService.hideLoader();
@@ -43,21 +45,17 @@ export class Template_2 {
             });
     }
 
-   
+    /**for showing the upated progress on course-detail page */
+    updateCourseProgress() {
+
+        if (!this.topic.read) {
+            this.generalService.updateTopicReadStatus(this.topic.topicId);
+            this.generalService.updateCourseProgressById(this.topic.courseId);
+        }
+    }
+
     ionViewDidLoad() {
-
-        this.navBar.backButtonClick = (ev: any) => {
-            ev.preventDefault();
-            ev.stopPropagation();
-            this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
-        }
-
-        if (this.platform.is('android')) {
-
-            this.unregisterBackButtonActionForAndroid = this.platform.registerBackButtonAction(() => {
-                this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
-            });
-        }
+            this.backBtnService.overrideBackBtnFunctionality(this);
     }
 
     ionViewWillLeave() {

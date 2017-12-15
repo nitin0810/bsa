@@ -16,6 +16,7 @@ import { GeneralService } from '../services/general.service';
 import { CustomHttpService } from '../services/custom-http.service';
 import { CustomService } from '../services/custom.service';
 import { AuthService } from '../services/auth.service';
+import { BackBtnService } from '../services/backBtn.service';
 import { Network } from '@ionic-native/network';
 import { NoInternet } from '../pages/non-lazy/no-internet/no-internet.component';
 
@@ -45,6 +46,7 @@ import { NoInternet } from '../pages/non-lazy/no-internet/no-internet.component'
     Network,
     NetworkService,
     GeneralService,
+    BackBtnService,
     CustomHttpService,
     CustomService,
     AuthService
