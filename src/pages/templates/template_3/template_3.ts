@@ -1,15 +1,15 @@
 import { Component, ViewChild } from '@angular/core';
-import { NavController, IonicPage, NavParams, Navbar, Platform } from 'ionic-angular';
+import { NavController, IonicPage, NavParams, Navbar } from 'ionic-angular';
 import { CustomService } from '../../../services/custom.service';
 import { GeneralService } from '../../../services/general.service';
-import { } from 'ionic-angular/platform/platform';
+import { BackBtnService } from '../../../services/backBtn.service';
 
 
 @IonicPage()
 @Component({
     selector: 'temp_3',
     templateUrl: './template_3.html',
-    styles:[`
+    styles: [`
         p{
             background:white;
         }
@@ -30,9 +30,9 @@ export class Template_3 {
 
     constructor(
         private navParams: NavParams,
-        private platform: Platform,
         private navCtrl: NavController,
         private generalService: GeneralService,
+        private backBtnService: BackBtnService,
         private customService: CustomService
     ) {
         this.topic = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
@@ -40,18 +40,7 @@ export class Template_3 {
     }
 
     ionViewDidLoad() {
-
-        this.navBar.backButtonClick = (ev: any) => {
-            ev.preventDefault();
-            ev.stopPropagation();
-            this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
-        }
-        if (this.platform.is('android')) {
-
-            this.unregisterBackButtonActionForAndroid = this.platform.registerBackButtonAction(() => {
-                this.navCtrl && this.navCtrl.popTo(this.navCtrl.getByIndex(1));
-            });
-        }
+        this.backBtnService.overrideBackBtnFunctionality(this);
     }
 
     ionViewWillLeave() {
@@ -63,16 +52,27 @@ export class Template_3 {
 
         this.customService.showLoader();
 
-        this.generalService.getTopicData(this.topic.template, this.topic.record,this.topic.topicId)
+        this.generalService.getTopicData(this.topic.template, this.topic.record, this.topic.topicId)
             .subscribe((res: any) => {
 
                 this.data = res.data;
+                this.updateCourseProgress();
                 this.data.questionnaire && this.data.questionnaire.length != 0 && this.setquestAnsObject(this.data.questionnaire[0].questions);
                 this.customService.hideLoader();
             }, (err: any) => {
                 this.customService.hideLoader();
                 this.customService.showToast(err.msg);
             });
+    }
+
+
+    /**for showing the upated progress on course-detail page */
+    updateCourseProgress() {
+
+        if (!this.topic.read) {
+            this.generalService.updateTopicReadStatus(this.topic.topicId);
+            this.generalService.updateCourseProgressById(this.topic.courseId);
+        }
     }
 
     setquestAnsObject(questions: Array<any>) {

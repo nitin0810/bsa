@@ -28,7 +28,6 @@ export class Template_3_Detail {
     ) {
         this.caseStudy = this.navParams.get('caseStudy');
         this.caseStudyNumber = this.navParams.get('number');
-        console.log(this.caseStudy);
         if (this.caseStudy.questionnaire && this.caseStudy.questionnaire.length != 0) {
 
             this.setquestAnsObject(this.caseStudy.questionnaire[0].questions);

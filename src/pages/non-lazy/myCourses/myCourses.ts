@@ -39,6 +39,7 @@ export class MyCoursesPage {
         this.generalService.getMyCoursesInfo()
             .subscribe((res: any) => {
                 this.subscribedCategories = res;
+                this.generalService.storeCoursesProgress(res);
                 this.customService.hideLoader();
             }, (err: any) => {
                 this.customService.hideLoader();
