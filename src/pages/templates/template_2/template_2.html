@@ -11,7 +11,7 @@
   <!-- Buttons Block -->
   <div cardButtons>
     <div selectionArea>
-      <div button *ngFor="let button of data?.buttons; let i=index" (click)="openModel(button)" [ngClass]="{'buttonHeight':data.type=='BUTTON'}">
+      <div button *ngFor="let button of data?.buttons; let i=index" (click)="openModel(button)" class="animated flipInX" [ngClass]="{'buttonHeight':data.type=='BUTTON'}">
         <div *ngIf="data.type=='BUTTON'">
           {{button.title}}
         </div>
@@ -20,7 +20,7 @@
         <ion-col col-6 *ngFor="let button of data?.buttons; let i=index" (tap)="openModel(button)">
           <div image>
             <div *ngIf="data.type=='IMAGE'">
-              <img [src]="button.image">
+              <img [src]="button.image" class="animated flipInDown">
             </div>
           </div>
         </ion-col>
