@@ -5,10 +5,7 @@ import { CustomHttpService } from './custom-http.service';
 @Injectable()
 export class AuthService {
 
-
-    constructor(private http: CustomHttpService) {
-
-    }
+    constructor(private http: CustomHttpService) { }
 
     login(loginCredentials: any) {
         return this.http.postForLogin('/login', loginCredentials);

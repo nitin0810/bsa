@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController,MenuController } from 'ionic-angular';
+import { IonicPage, NavController, MenuController } from 'ionic-angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { CustomService } from '../../../services/custom.service';
 import { AuthService } from '../../../services/auth.service';
-import {  } from 'ionic-angular/components/app/menu-controller';
+import { } from 'ionic-angular/components/app/menu-controller';
 
 @IonicPage()
 @Component({
     selector: 'signIn',
     templateUrl: 'signIn.html',
-    styles:[`h3{color:#2296f3}`]
+    styles: [`h3{color:#2296f3}`]
 })
 export class SignInPage {
 
@@ -19,14 +19,14 @@ export class SignInPage {
 
     constructor(
         private navCtrl: NavController,
-        private menu:MenuController,
+        private menu: MenuController,
         // private events:Events,
         public formBuilder: FormBuilder,
         private customService: CustomService,
         private authService: AuthService
     ) {
         this.menu.enable(false);
-        
+
     }
 
     ngOnInit() {
@@ -39,14 +39,23 @@ export class SignInPage {
 
     login() {
 
-        this.customService.showLoader("Authenticating...");
-        this.authService.login(this.loginForm.value)
-            .subscribe((res: any) => {
-                this.loggedInSuccesfully(res);
-            }, (err) => {
+        if (this.loginForm.valid) {
 
-                this.loginFailed(err);
-            });
+            this.customService.showLoader("Authenticating...");
+            this.authService.login(this.loginForm.value)
+                .subscribe((res: any) => {
+                    this.loggedInSuccesfully(res);
+                }, (err) => {
+                    this.loginFailed(err);
+                });
+        } else {
+
+            if (this.loginForm.controls.username.invalid) {
+                this.customService.showToast('Username is required');
+            } else {
+                this.customService.showToast('Password is required');
+            }
+        }
     }
 
 
@@ -66,7 +75,7 @@ export class SignInPage {
         this.customService.hideLoader();
         if (err.status == 400) {
 
-            this.customService.showToast("Invalid credentials, Enter correct Information.");
+            this.customService.showToast("Please enter valid username or password.");
         } else {
 
             this.customService.showToast(err.msg);

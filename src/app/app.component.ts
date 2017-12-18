@@ -46,7 +46,7 @@ userName:string;
     this.setSideMenuContent();
     // console.log(JSON.parse(localStorage.getItem('userInfo')));
     
-    this.userName = JSON.parse(localStorage.getItem('userInfo')).fullName;
+    this.userName = JSON.parse(localStorage.getItem('userInfo'))?  JSON.parse(localStorage.getItem('userInfo')).fullName:'';
   }
 
   setSideMenuContent() {

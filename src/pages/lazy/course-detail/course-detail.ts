@@ -60,7 +60,7 @@ export class CourseDetailPage {
     this.navCtrl.push(tempPage, { 'topicId': topic.topicId });
   }
 
-  /**update the course progress and read-status of it's topics, whenever this page is opened after reading some topic */
+  /**update the course progress & read-status of it's topics whenever this page is opened after reading some topic */
   ionViewWillEnter() {
 
     /**no need to update the progress, when this page is pushed from mycourses page */
@@ -72,7 +72,7 @@ export class CourseDetailPage {
     this.course.totalTopics = this.generalService.getCourseProgressById(this.course.courseId).totalTopics;
 
 
-    /**update topics read status  */
+    /**update topics read-status  */
     let topic: any;
     for (let i = 0; i < this.selectedChapter.topics.length; i++) {
 
