@@ -44,6 +44,9 @@
         </ion-item-options>
       </ion-item-sliding>
     </div>
+    <div *ngIf="subscribedCategories?.length==0">
+      <h3>NO COURSES SUBSCRIBED</h3>
+    </div>
   </ion-list>
   <!-- /available courses -->
 </ion-content>
