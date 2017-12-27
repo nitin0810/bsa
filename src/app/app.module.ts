@@ -19,6 +19,7 @@ import { AuthService } from '../services/auth.service';
 import { BackBtnService } from '../services/backBtn.service';
 import { Network } from '@ionic-native/network';
 import { NoInternet } from '../pages/non-lazy/no-internet/no-internet.component';
+import { TopicCacheService } from '../services/topicCache.service';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { NoInternet } from '../pages/non-lazy/no-internet/no-internet.component'
     NetworkService,
     GeneralService,
     BackBtnService,
+    TopicCacheService,
     CustomHttpService,
     CustomService,
     AuthService

@@ -3,6 +3,7 @@ import { NavController, IonicPage, NavParams, Navbar } from 'ionic-angular';
 import { CustomService } from '../../../services/custom.service';
 import { GeneralService } from '../../../services/general.service';
 import { BackBtnService } from '../../../services/backBtn.service';
+import { TopicCacheService } from '../../../services/topicCache.service';
 
 
 @IonicPage()
@@ -33,6 +34,7 @@ export class Template_3 {
         private navCtrl: NavController,
         private generalService: GeneralService,
         private backBtnService: BackBtnService,
+        private topicCacheService: TopicCacheService,
         private customService: CustomService
     ) {
         this.topic = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
@@ -50,12 +52,20 @@ export class Template_3 {
 
     getTopicData() {
 
-        this.customService.showLoader();
+        /**first check if the topic's content is present in topicCache stored in TopicCacheService */
+        let d: any = this.topicCacheService.getCachedTopicDataById(this.topic.topicId);
+        if (d) {
+            this.data = d;
+            return;
+        }
 
+        /**if cached not found, load from server and then store in cache for future use */
+        this.customService.showLoader();
         this.generalService.getTopicData(this.topic.template, this.topic.record, this.topic.topicId)
             .subscribe((res: any) => {
 
                 this.data = res.data;
+                this.topicCacheService.cacheTopicData(this.topic.topicId,res.data);
                 this.updateCourseProgress();
                 this.data.questionnaire && this.data.questionnaire.length != 0 && this.setquestAnsObject(this.data.questionnaire[0].questions);
                 this.customService.hideLoader();

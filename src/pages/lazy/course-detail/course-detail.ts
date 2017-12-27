@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { NavController, IonicPage } from 'ionic-angular';
-import { NavParams } from 'ionic-angular/navigation/nav-params';
+import { Component, ViewChild, OnInit } from '@angular/core';
+import { NavController, IonicPage, Navbar,Platform,NavParams } from 'ionic-angular';
 import { GeneralService } from '../../../services/general.service';
+import { TopicCacheService } from '../../../services/topicCache.service';
 
 
 @IonicPage()
@@ -36,20 +36,29 @@ import { GeneralService } from '../../../services/general.service';
   ]
 })
 
-export class CourseDetailPage {
+export class CourseDetailPage implements OnInit{
+  @ViewChild(Navbar) navBar: Navbar;
 
   course: any;
   selectedChapter: any; // chapter of the selected topic, used for the same purpose as above
-
+  unregisterBackButtonActionForAndroid:any;
 
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
-    private generalService: GeneralService
+    private platform:Platform,
+    private generalService: GeneralService,
+    private topicCacheService: TopicCacheService,
+
   ) {
 
     this.course = this.navParams.get('course');
     this.generalService.storeTopicwiseData(this.course);
+  }
+
+  ngOnInit(){
+ 
+    this.overrideBackBtnFunctionality();
   }
 
   openTopicPage(topic: any, chapter: any) {
@@ -80,5 +89,30 @@ export class CourseDetailPage {
       topic.read = this.generalService.topicWiseData[topic.topicId].read;
     }
   }
+
+  overrideBackBtnFunctionality() {
+
+    /**overide the defult behaviour of navbar back btn */
+    this.navBar.backButtonClick = (ev: any) => {
+      ev.preventDefault();
+      ev.stopPropagation();
+      this.topicCacheService.clearCachedData(); //extra functionality whiling popping this page
+      this.navCtrl && this.navCtrl.pop();
+    }
+
+    /**handle the android hardware back btn for the same purpose*/
+    if (this.platform.is('android')) {
+      this.unregisterBackButtonActionForAndroid = this.platform.registerBackButtonAction(() => {
+
+        this.topicCacheService.clearCachedData();
+        this.navCtrl && this.navCtrl.pop();
+      });
+    }
+  }
+
+ionViewWillLeave() {
+    // Unregister the custom back button action for this page
+    this.unregisterBackButtonActionForAndroid && this.unregisterBackButtonActionForAndroid();
+}
 
 }

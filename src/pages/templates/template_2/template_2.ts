@@ -3,6 +3,7 @@ import { NavController, IonicPage, NavParams, ModalController, Navbar } from 'io
 import { CustomService } from '../../../services/custom.service';
 import { GeneralService } from '../../../services/general.service';
 import { BackBtnService } from '../../../services/backBtn.service';
+import { TopicCacheService } from '../../../services/topicCache.service';
 
 
 @IonicPage()
@@ -17,15 +18,16 @@ export class Template_2 {
     topic: any;
     data: any;
 
-    unregisterBackButtonActionForAndroid:any;
+    unregisterBackButtonActionForAndroid: any;
 
     constructor(
         private navParams: NavParams,
         private modalCtrl: ModalController,
         private navCtrl: NavController,
         private generalService: GeneralService,
-                private backBtnService: BackBtnService,
-        private customService:CustomService
+        private backBtnService: BackBtnService,
+        private topicCacheService: TopicCacheService,
+        private customService: CustomService
     ) {
         this.topic = this.generalService.getDataByTopicId(this.navParams.get('topicId'));
         this.getTopicData();
@@ -33,10 +35,20 @@ export class Template_2 {
 
     getTopicData() {
 
+        
+        /**first check if the topic's content is present in topicCache stored in TopicCacheService */
+        let d: any = this.topicCacheService.getCachedTopicDataById(this.topic.topicId);
+        if (d) {
+            this.data = d;
+            return;
+        }
+
+        /**if cached not found, load from server and then store in cache for future use */
         this.customService.showLoader();
-        this.generalService.getTopicData(this.topic.template, this.topic.record,this.topic.topicId)
+        this.generalService.getTopicData(this.topic.template, this.topic.record, this.topic.topicId)
             .subscribe((res: any) => {
                 this.data = res.data;
+                this.topicCacheService.cacheTopicData(this.topic.topicId,res.data);
                 this.updateCourseProgress();
                 this.customService.hideLoader();
             }, (err: any) => {
@@ -55,7 +67,7 @@ export class Template_2 {
     }
 
     ionViewDidLoad() {
-            this.backBtnService.overrideBackBtnFunctionality(this);
+        this.backBtnService.overrideBackBtnFunctionality(this);
     }
 
     ionViewWillLeave() {
@@ -74,7 +86,7 @@ export class Template_2 {
     }
 
     goToContentPage() {
-        
+
         this.navCtrl.popTo(this.navCtrl.getByIndex(1));
     }
 
